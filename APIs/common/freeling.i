@@ -112,6 +112,9 @@ class tree {
       tree_preorder_iterator<T>& operator++();
       tree_preorder_iterator<T> operator--(int);
       tree_preorder_iterator<T>& operator--();
+      // for python and other APIs
+      void incr();
+      void decr();
 
       bool operator==(const tree_preorder_iterator<T> &t) const;
       bool operator!=(const tree_preorder_iterator<T> &t) const;      
@@ -168,6 +171,9 @@ class tree {
       tree_sibling_iterator<T>& operator++();
       tree_sibling_iterator<T> operator--(int);
       tree_sibling_iterator<T>& operator--();
+      // for python and other APIs
+      void incr();
+      void decr();
 
       /// ---------------------- Non const operations
       T& operator*() const;
@@ -230,6 +236,9 @@ class tree {
       const_tree_preorder_iterator<T>& operator++();
       const_tree_preorder_iterator<T> operator--(int);
       const_tree_preorder_iterator<T>& operator--();
+      // for python and other APIs
+      void incr();
+      void decr();
 
       bool operator==(const const_tree_preorder_iterator<T> &t) const;
       bool operator!=(const const_tree_preorder_iterator<T> &t) const;      
@@ -280,6 +289,9 @@ class tree {
       const_tree_sibling_iterator<T>& operator++();
       const_tree_sibling_iterator<T> operator--(int);
       const_tree_sibling_iterator<T>& operator--();
+      // for python and other APIs
+      void incr();
+      void decr();
 
       bool operator==(const const_tree_sibling_iterator<T> &t) const;
       bool operator!=(const const_tree_sibling_iterator<T> &t) const;
@@ -376,12 +388,61 @@ class analysis {
 
 
 ////////////////////////////////////////////////////////////////
+///   Class alternative stores all info related to a word
+///  alternative spelling: form, edit distance
+////////////////////////////////////////////////////////////////
+ 
+class alternative {
+  
+  public:
+    /// constructor
+    alternative();
+    /// constructor
+    alternative(const std::wstring &);
+    /// constructor
+    alternative(const std::wstring &, const int);
+    /// Copy constructor
+    alternative(const alternative &);
+    /// assignment
+    alternative& operator=(const alternative&);
+    /// comparison
+    bool operator==(const alternative&) const;
+
+    /// Get form of the alternative
+    std::wstring get_form() const;
+    /// Get edit distance
+    int get_distance() const;
+    /// Get edit distance probability
+    float get_probability() const;
+    /// Whether the alternative is selected in the kbest path or not
+    bool is_selected(int k = 1) const;
+    /// Clear the kbest selections
+    void clear_selections();
+    /// Add a kbest selection
+    void add_selection(int);
+    
+    /// Set alternative form
+    void set_form(const std::wstring &);
+    /// Set alternative distance
+    void set_distance(int);
+    /// Set alternative probability
+    void set_probability(float);
+};
+
+
+////////////////////////////////////////////////////////////////
 ///   Class word stores all info related to a word: 
 ///  form, list of analysis, list of tokens (if multiword).
 ////////////////////////////////////////////////////////////////
 
 class word : public std::list<freeling::analysis> {
    public:
+     // morphological modules that may add analysis to the word
+     typedef enum  { USERMAP=0x0001,    NUMBERS=0x0002,       PUNCTUATION=0x0004,
+                     DATES=0x0008,      DICTIONARY=0x0010,    AFFIXES=0x0020,
+                     COMPOUNDS=0x0040,  MULTIWORDS=0x0080,    NER=0x0100, 
+                     QUANTITIES=0x0200, PROBABILITIES=0x0400, GUESSER=0x0800 } Modules;
+
       /// user-managed data, we just store it.
       std::vector<std::wstring> user;
 
@@ -460,17 +521,28 @@ class word : public std::list<freeling::analysis> {
       unsigned long get_span_start() const;
       unsigned long get_span_finish() const;
 
-      /// get in_dict
-      bool found_in_dict() const;
-      /// set in_dict
-      void set_found_in_dict(bool);
       /// check if there is any retokenizable analysis
       bool has_retokenizable() const;
       /// mark word as having definitive analysis
       void lock_analysis();
+      /// unmark word as having definitive analysis
+      void unlock_analysis();
       /// check if word is marked as having definitive analysis
-      bool is_locked() const;
+      bool is_locked_analysis() const;
+      /// mark word as non-multiwordable
+      void lock_multiwords();
+      /// unmark word as non-multiwordable
+      void unlock_multiwords();
+      /// check if word is marked as not being multiwordable
+      bool is_locked_multiwords() const;
 
+      /// control which maco modules added analysis to this word
+      void set_analyzed_by(unsigned);
+      bool is_analyzed_by(unsigned) const;
+      unsigned get_analyzed_by() const;
+      
+      /// add an alternative to the alternatives list
+      void add_alternative(const freeling::alternative &);
       /// add an alternative to the alternatives list
       void add_alternative(const std::wstring &, int);
       /// replace alternatives list with list given
@@ -479,19 +551,21 @@ class word : public std::list<freeling::analysis> {
       void clear_alternatives();
       /// find out if the speller checked alternatives
       bool has_alternatives() const;
+
       /// get alternatives list &
-      std::list<std::pair<std::wstring,int> >& get_alternatives();
+      std::list<freeling::alternative>& get_alternatives();
       /// get alternatives begin iterator
-      std::list<std::pair<std::wstring,int> >::iterator alternatives_begin();
+      std::list<freeling::alternative>::iterator alternatives_begin();
       /// get alternatives end iterator
-      std::list<std::pair<std::wstring,int> >::iterator alternatives_end();
+      std::list<freeling::alternative>::iterator alternatives_end();
+      
       #ifndef FL_API_JAVA
       /// get alternatives list const &
-      const std::list<std::pair<std::wstring,int> >& get_alternatives() const;
+      const std::list<freeling::alternative>& get_alternatives() const;
       /// get alternatives begin iterator
-      std::list<std::pair<std::wstring,int> >::const_iterator alternatives_begin() const;
+      std::list<freeling::alternative>::const_iterator alternatives_begin() const;
       /// get alternatives end iterator
-      std::list<std::pair<std::wstring,int> >::const_iterator alternatives_end() const;
+      std::list<freeling::alternative>::const_iterator alternatives_end() const;
       #endif
 
       /// add one analysis to current analysis list  (no duplicate check!)
@@ -1025,6 +1099,152 @@ class paragraph : public std::list<freeling::sentence> {
 
 ////////////////  FREELING ANALYSIS MODULES  ///////////////////
 
+/*------------------------------------------------------------------------*/
+// codes for input-output formats
+typedef enum {TEXT,IDENT,TOKEN,SPLITTED,MORFO,TAGGED,SENSES,SHALLOW,PARSED,DEP,COREF,SEMGRAPH} AnalysisLevel;
+// codes for tagging algorithms
+typedef enum {NO_TAGGER,HMM,RELAX} TaggerAlgorithm;
+// codes for dependency parsers
+typedef enum {NO_DEP,TXALA,TREELER} DependencyParser;
+// codes for sense annotation
+typedef enum {NO_WSD,ALL,MFS,UKB} WSDAlgorithm;
+// codes for ForceSelect
+typedef enum {NO_FORCE,TAGGER,RETOK} ForceSelectStrategy;
+
+////////////////////////////////////////////////////////////////
+/// 
+///  Class analyzer::config_options contains the configuration options
+///  that define which modules are active and which configuration files
+///  are loaded for each of them at construction time.
+///  Options in this set can not be altered once the analyzer is created.  
+///
+////////////////////////////////////////////////////////////////
+ 
+ class config_options {
+ public:
+   /// Language of text to process
+   std::wstring Lang;
+   /// Tokenizer configuration file
+   std::wstring TOK_TokenizerFile;
+   /// Splitter configuration file
+   std::wstring SPLIT_SplitterFile;
+   /// Morphological analyzer options
+   std::wstring MACO_Decimal, MACO_Thousand;
+   std::wstring MACO_UserMapFile, MACO_LocutionsFile,   MACO_QuantitiesFile,
+     MACO_AffixFile,   MACO_ProbabilityFile, MACO_DictionaryFile, 
+     MACO_NPDataFile,  MACO_PunctuationFile, MACO_CompoundFile;   	 
+   double MACO_ProbabilityThreshold;
+   /// Phonetics config file
+   std::wstring PHON_PhoneticsFile;
+   /// NEC config file
+   std::wstring NEC_NECFile;
+   /// Sense annotator and WSD config files
+   std::wstring SENSE_ConfigFile;
+   std::wstring UKB_ConfigFile;
+   /// Tagger options
+   std::wstring TAGGER_HMMFile;
+   std::wstring TAGGER_RelaxFile;
+   int TAGGER_RelaxMaxIter;
+   double TAGGER_RelaxScaleFactor;
+   double TAGGER_RelaxEpsilon;
+   bool TAGGER_Retokenize;
+   ForceSelectStrategy TAGGER_ForceSelect;
+   /// Chart parser config file
+   std::wstring PARSER_GrammarFile;
+   /// Dependency parsers config files
+   std::wstring DEP_TxalaFile;   
+   std::wstring DEP_TreelerFile;   
+   /// Coreference resolution config file
+   std::wstring COREF_CorefFile;
+   /// semantic graph extractor config file
+   std::wstring SEMGRAPH_SemGraphFile;
+ };
+ 
+ ////////////////////////////////////////////////////////////////
+ /// 
+ ///  Class analyzer::invoke_options contains the options
+ ///  that define the behaviour of each module in the analyze 
+ ///  on the next analysis.
+ ///  Options in this set can be altered after construction
+ ///  (e.g. to activate/deactivate certain modules)
+ ///
+ ////////////////////////////////////////////////////////////////
+ 
+ class invoke_options {
+ public:
+   /// Level of analysis in input and output
+   AnalysisLevel InputLevel, OutputLevel;
+   
+   /// activate/deactivate morphological analyzer modules
+   bool MACO_UserMap, MACO_AffixAnalysis, MACO_MultiwordsDetection, 
+     MACO_NumbersDetection, MACO_PunctuationDetection, 
+     MACO_DatesDetection, MACO_QuantitiesDetection, 
+     MACO_DictionarySearch, MACO_ProbabilityAssignment, MACO_CompoundAnalysis,
+     MACO_NERecognition, MACO_RetokContractions;
+   
+   /// activate/deactivate phonetics and NEC
+   bool PHON_Phonetics;
+   bool NEC_NEClassification;
+   
+   /// Select which tagger, parser, or sense annotator to use
+   WSDAlgorithm SENSE_WSD_which;
+   TaggerAlgorithm TAGGER_which;
+   DependencyParser DEP_which;    
+ };
+ 
+%nestedworkaround analyzer::config_options;
+%nestedworkaround analyzer::invoke_options;
+%{
+  namespace freeling {
+   typedef freeling::analyzer::config_options config_options;
+   typedef freeling::analyzer::invoke_options invoke_options;
+  }
+%}
+
+////////////////////////////////////////////////////////////////
+/// 
+///  Class analyzer is a meta class that just calls all modules in
+///  FreeLing in the right order.
+///  Its construction options allow to instantiate different kinds of
+///  analysis pipelines, and or different languages.
+///  Also, invocation options may be altered at each call, 
+///  tuning the analysis to each particular sentence or document needs.
+///  For a finer control, underlying modules should be called directly.
+///
+////////////////////////////////////////////////////////////////
+
+class analyzer {
+
+ public:
+   typedef analyzer_config_options config_options;
+   typedef analyzer_invoke_options invoke_options;
+
+   analyzer(const freeling::config_options &cfg);
+   void set_current_invoke_options(const freeling::invoke_options &opt, bool check=true);
+   const invoke_options& get_current_invoke_options() const;
+
+   ~analyzer();
+
+   /// analyze further levels on a partially analyzed document
+   void analyze(document &doc) const;
+   /// analyze further levels on partially analyzed sentences
+   void analyze(std::list<sentence> &ls) const;
+   /// analyze text as a whole document
+   void analyze(const std::wstring &text, document &doc, bool parag=false) const;
+   /// Analyze text as a partial document. Retain incomplete sentences in buffer   
+   /// in case next call completes them (except if flush==true)
+   void analyze(const std::wstring &text, std::list<sentence> &ls, bool flush=false);
+
+   /// for python api
+   std::list<sentence> analyze(const std::wstring &text, bool flush=false);   
+   document analyze_as_document(const std::wstring &text, bool parag=false) const;
+
+   // flush splitter buffer and analyze any pending text. 
+   void flush_buffer(std::list<sentence> &ls);
+   // reset tokenizer offset counter
+   void reset_offset();
+};
+
 
 /*------------------------------------------------------------------------*/
 class traces {
@@ -1059,6 +1279,9 @@ class lang_ident {
       void rank_languages(std::vector<std::pair<double,std::wstring> > &, 
       			  const std::wstring &, 
       			  const std::set<std::wstring> &ls=std::set<std::wstring>()) const;
+      std::vector<std::pair<double,std::wstring> > rank_languages (const std::wstring &text,
+                                                                   const std::set<std::wstring> &ls=std::set<std::wstring>()) const;
+
 };
 
 
@@ -1500,7 +1723,7 @@ class relax_tagger {
     ~alternatives();
 
     /// direct access to results of underlying automata
-    void get_similar_words(const std::wstring &, std::list<std::pair<std::wstring,int> > &) const;
+    void get_similar_words(const std::wstring &, std::list<freeling::alternative> &) const;
 
     #ifndef FL_API_JAVA
     /// analyze sentence
@@ -1789,8 +2012,6 @@ class semanticDB {
 };
 
 
-
-
 ////////////////////////////////////////////////////////////////
 /// EAGLES tagset handler
 ////////////////////////////////////////////////////////////////
@@ -1833,7 +2054,7 @@ class foma_FSM {
     ~foma_FSM();
 
     /// Use automata to obtain closest matches to given form, and add them to given list.
-    void get_similar_words(const std::wstring &, std::list<std::pair<std::wstring,int> > &) const;    
+    void get_similar_words(const std::wstring &, std::list<freeling::alternative> &) const;    
     /// set maximum edit distance of desired results
     void set_cutoff_threshold(int);
     /// set maximum number of desired results
@@ -1846,6 +2067,66 @@ class foma_FSM {
     std::set<std::wstring> get_alphabet();
 };
 
+
+  ////////////////////////////////////////////////////////////////
+  ///  Class fex implements a feature extractor.
+  ////////////////////////////////////////////////////////////////
+
+  class fex {
+  public:
+    /// constructor, given rule file, lexicon file (may be empty), and custom functions
+    fex(const std::wstring&, 
+        const std::wstring&, 
+        const std::map<std::wstring,const freeling::feature_function *> &custom=std::map<std::wstring,const freeling::feature_function *>() );
+    /// destructor
+    ~fex();
+
+    /// encode given sentence in features as feature names. 
+    void encode_name(sentence &, std::vector<std::set<std::wstring> > &) const;
+    /// encode given sentence in features as integer feature codes
+    void encode_int(sentence &, std::vector<std::set<int> > &) const;
+    /// encode given sentence in features as integer feature codes and as features names
+    void encode_all(sentence &, std::vector<std::set<std::wstring> > &, std::vector<std::set<int> > &) const;
+
+    /// encode given sentence in features as feature names. Return result suitable for Java/perl APIs
+    std::vector<std::set<std::wstring> > encode_name(sentence &) const;
+    /// encode given sentence in features as integer feature codes. Return result apt for Java/perl APIs
+    std::vector<std::set<int> > encode_int(sentence &) const;
+
+    /// clear lexicon
+    void clear_lexicon(); 
+    /// encode sentence and add features to current lexicon
+    void encode_to_lexicon(sentence &);
+    /// save lexicon to a file, filtering features with low occurrence rate
+    void save_lexicon(const std::wstring &, double) const;
+  };
+
+  ////////////////////////////////////////////////////////////////
+  ///  Class fex implements a feature lexicon
+  ////////////////////////////////////////////////////////////////
+
+  class fex_lexicon  {
+    
+  public:
+    /// constructor: empty lexicon
+    fex_lexicon();
+    /// constructor: load file
+    fex_lexicon(const std::wstring &);
+    /// empty lexicon
+    void clear_lexicon(); 
+    /// add feature occurrence to lexicon
+    void add_occurrence(const std::wstring &);
+    /// save lexicon to a file, filtering features with low occurrence rate
+    void save_lexicon(const std::wstring &, double) const;
+    /// consult: get feature code
+    unsigned int get_code(const std::wstring &) const;
+    /// consult: get feature frequency
+    unsigned int get_freq(const std::wstring &) const;
+    /// Find out whether the lexicon contains the given feature code
+    bool contains_code(unsigned int) const; 
+    /// Find out whether the lexicon is loaded and full
+    bool is_empty() const; 
+  };
 
 
 ////////////////////////////////////////////////////////////////
@@ -1872,6 +2153,10 @@ class util {
   static std::vector<std::wstring> wstring2vector(const std::wstring &, const std::wstring &);
 };
 
+
+////////////////////////////////////////////////////////////////
+/// Input/output
+////////////////////////////////////////////////////////////////
 
  /// Classes reading/writing freeling data structures into different input/output formats
  namespace io {

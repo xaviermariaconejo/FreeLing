@@ -9,10 +9,14 @@
 %include std_vector.i
 %include std_map.i
 %include std_pair.i
+#ifndef FL_API_JAVA
+%include std_set.i
+#endif
 
 %template(VectorWord) std::vector<freeling::word>;
 %template(ListWord) std::list<freeling::word>;
 %template(ListAnalysis) std::list<freeling::analysis>;
+%template(ListAlternative) std::list<freeling::alternative>;
 %template(ListSentence) std::list<freeling::sentence>;
 %template(ListParagraph) std::list<freeling::paragraph>;
 
@@ -36,7 +40,13 @@
 %template(VectorListString) std::vector<std::list<std::wstring> >;
 %template(VectorString) std::vector<std::wstring>;
 
-%template(PairDoubleString) std::pair<double,std::wstring >;
+#ifndef FL_API_JAVA
+%template(VectorSetString) std::vector<std::set<std::wstring> >;
+%template(VectorSetInt) std::vector<std::set<int> >;
+%template(SetString) std::set<std::wstring>;
+#endif
+
+%template(PairDoubleString) std::pair<double,std::wstring>;
 %template(VectorPairDoubleString) std::vector<std::pair<double,std::wstring> >;
 
 %template(PairStringString) std::pair<std::wstring,std::wstring >;

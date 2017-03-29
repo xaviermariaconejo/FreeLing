@@ -1,4 +1,3 @@
-
 //////////////////////////////////////////////////////////////////
 //
 //    FreeLing - Open Source Language Analyzers
@@ -33,7 +32,6 @@
 #include <iostream> 
 #include <list>
 
-/// headers to call freeling library
 #include "freeling.h"
 
 namespace freeling {
@@ -103,6 +101,7 @@ class WINDLL analyzer {
        double TAGGER_RelaxScaleFactor;
        double TAGGER_RelaxEpsilon;
        bool TAGGER_Retokenize;
+       int TAGGER_kbest=1;
        ForceSelectStrategy TAGGER_ForceSelect;
        /// Chart parser config file
        std::wstring PARSER_GrammarFile;
@@ -113,6 +112,11 @@ class WINDLL analyzer {
        std::wstring COREF_CorefFile;
        /// semantic graph extractor config file
        std::wstring SEMGRAPH_SemGraphFile;
+
+       /// constructor
+       analyzer_config_options();
+       /// destructor
+       ~analyzer_config_options();
    };
 
    ////////////////////////////////////////////////////////////////
@@ -145,6 +149,11 @@ class WINDLL analyzer {
        WSDAlgorithm SENSE_WSD_which;
        TaggerAlgorithm TAGGER_which;
        DependencyParser DEP_which;    
+
+       /// constructor
+       analyzer_invoke_options();
+       /// destructor
+       ~analyzer_invoke_options();
    };
    
 
@@ -204,13 +213,18 @@ class WINDLL analyzer {
    /// analyze further levels on partially analyzed sentences
    void analyze(std::list<sentence> &ls) const;
    /// analyze text as a whole document
-   void analyze(const wstring &text, document &doc, bool parag=false) const;
+   void analyze(const std::wstring &text, document &doc, bool parag=false) const;
   /// Analyze text as a partial document. Retain incomplete sentences in buffer   
    /// in case next call completes them (except if flush==true)
-   void analyze(const wstring &text, std::list<sentence> &ls, bool flush=false);
+   void analyze(const std::wstring &text, std::list<sentence> &ls, bool flush=false);
+
+   // for python API
+   std::list<sentence> analyze(const std::wstring &text, bool flush=false) ;
+   document analyze_as_document(const std::wstring &text, bool parag=false) const;
+
    // flush splitter buffer and analyze any pending text. 
    void flush_buffer(std::list<sentence> &ls);
- 
+   // reset tokenizer offset counter
    void reset_offset();
 };
 

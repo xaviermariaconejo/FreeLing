@@ -3,10 +3,8 @@ if BUILD_TESTS
   DO_TESTS = tests
 endif
 
-if NO_LIBFOMA
-  DO_FOMA =
-else
-  DO_FOMA = libfoma
+if KALDI
+  DO_ASR = libasr
 endif
 
-SUBDIRS = include libtreeler $(DO_FOMA) libfreeling main utilities $(DO_TESTS)
+SUBDIRS = include libtreeler libfoma libfreeling $(DO_ASR) main utilities $(DO_TESTS)

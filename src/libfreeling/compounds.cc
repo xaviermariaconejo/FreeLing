@@ -167,17 +167,17 @@ namespace freeling {
     bool compound = false;
 
     // obtain decompositions
-    list<pair<wstring,int> > comps;
+    list<alternative> comps;
     fsm->get_similar_words(w.get_lc_form(), comps);
     TRACE(2,L"Obtained splittings");
 
     // process decompositions with minimal cost
-    list<pair<wstring,int> >::iterator d = comps.begin();
-    int cost = d->second;
-    while (d != comps.end() and cost == d->second) {
-      TRACE(3,L"Processing splitting "+d->first);
+    list<alternative>::iterator d = comps.begin();
+    int cost = d->get_distance();
+    while (d != comps.end() and cost == d->get_distance()) {
+      TRACE(3,L"Processing splitting "+d->get_form());
       // see if decomposition matches any valid pattern
-      list<wstring> dec = util::wstring2list(d->first,L"_");
+      list<wstring> dec = util::wstring2list(d->get_form(),L"_");
       list<word> wds;
       for (list<wstring>::iterator s=dec.begin(); s!=dec.end(); s++) {
         word t(*s);
@@ -233,7 +233,8 @@ namespace freeling {
         TRACE(5,L"pattern "+p->patr+L" good="+util::int2wstring(int(good))+L"  tag="+tag);
         if (good and seen.find(lemma+L"#"+tag)==seen.end()) {
           w.add_analysis(analysis(lemma.substr(1),tag));
-          w.set_found_in_dict(true); 
+          // record this word was analyzed by this module
+          w.set_analyzed_by(word::COMPOUNDS);
           seen.insert(lemma+L"#"+tag);
           compound = true;
         }

@@ -69,11 +69,15 @@
 #define MENTIONS_TRACE      0x10000000
 #define OUTPUT_TRACE        0x20000000
 #define SEMGRAPH_TRACE      0x40000000
-
 #define SUMMARIZER_TRACE    0x80000000
 
-/// MOD_TRACECODE and MOD_TRACENAME are empty. The class 
-/// using the trace is expected to set them
+/** Traces beyond 32 bits **/
+#define ASR_TRACE            0x100000000
+#define EMBEDDINGS_TRACE    0x200000000
+#define CORRECTOR_TRACE      0x400000000
+
+// MOD_TRACECODE and MOD_TRACENAME are empty. The class 
+// using the trace is expected to set them
 #undef MOD_TRACECODE
 #undef MOD_TRACENAME
 
@@ -88,102 +92,14 @@ namespace freeling {
     // current trace level
     static int TraceLevel;
     // modules to trace
-    static unsigned long TraceModule;
-
-    static void error_crash(const std::wstring &, const std::wstring &);
-    static void warning(const std::wstring &, const std::wstring &);
-    static void trace(int,const std::wstring &, const std::wstring &, unsigned long);
-    static void trace_word (int lv, const word &, const std::wstring &, unsigned long);
-    static void trace_word_list(int,const std::list<word> &, const std::wstring &, unsigned long);
-    static void trace_sentence(int,const sentence &, const std::wstring &, unsigned long);
-    static void trace_sentence_list(int,const std::list<sentence> &, const std::wstring &, unsigned long);
+    static unsigned long long TraceModule;
   };
-
-  /// static trace methods definition.  Inlined for efficiency
-  //---------------------------------
-  inline void traces::error_crash(const std::wstring &msg, const std::wstring &modname) {
-    std::wcerr<<modname<<L": "<<msg<<std::endl; 
-    exit(1);
-  }
-
-  //---------------------------------
-  inline void traces::warning(const std::wstring &msg, const std::wstring &modname) {
-    std::wcerr<<modname<<L": "<<msg<<std::endl; 
-  }
-
-  //---------------------------------
-  inline void traces::trace(int lv, const std::wstring &msg, const std::wstring &modname, unsigned long modcode) {
-    if (traces::TraceLevel>=lv && (traces::TraceModule&modcode))
-      std::wcerr<<modname<<L": "<<msg<<std::endl;
-  }
-
-
-  //---------------------------------
-  inline void traces::trace_word (int lv, const word &wd, const std::wstring &modname, unsigned long modcode) {
-    if (traces::TraceLevel>=lv && (traces::TraceModule&modcode)) {
-
-      std::wcerr<<L"Word form ["
-                <<wd.get_form()<<L"] ("
-                <<wd.get_span_start()<<L","<<wd.get_span_finish()<<L")"<<std::endl;
-  
-      for (word::const_iterator an=wd.unselected_begin(); an!=wd.unselected_end(); an++)
-        std::wcerr<<L"   analysis: <"
-                  <<an->get_lemma()<<L","
-                  <<an->get_tag()<<L","
-                  <<an->get_prob()<<L">"<<std::endl;
-
-      for (word::const_iterator an=wd.selected_begin(); an!=wd.selected_end(); an++) 
-        std::wcerr<<L"   analysis: <"
-                  <<an->get_lemma()<<L","
-                  <<an->get_tag()<<L","
-                  <<an->get_prob()<<L"> **"<<std::endl;
-  
-      if (wd.is_multiword()) { 
-        std::wcerr<<L"   is a multiword composed by:"<<std::endl;
-        const std::list<word> & mw = wd.get_words_mw(); 
-        for (std::list<word>::const_iterator p=mw.begin(); p!=mw.end(); p++) 
-          std::wcerr<<L"     ("<<p->get_form()<<L")"<<std::endl; 
-      }
-    }
-  }
-
-  //---------------------------------
-  inline void traces::trace_word_list(int lv, const std::list<word> &wl, const std::wstring &modname, unsigned long modcode) {
-    if (traces::TraceLevel>=lv && (traces::TraceModule&modcode)) {
-      for (std::list<word>::const_iterator wd=wl.begin(); wd!=wl.end(); wd++) { 
-        traces::trace_word(lv, *wd, modname, modcode);
-      }
-    }
-  }
-
-  //---------------------------------
-  inline void traces::trace_sentence(int lv, const sentence &s, const std::wstring &modname, unsigned long modcode) {
-     
-    if (traces::TraceLevel>=lv && (traces::TraceModule&modcode)) {
-      traces::trace(lv, L"BEGIN sentence",modname,modcode); 
-      for ( sentence::const_iterator wd=s.begin(); wd!=s.end(); wd++) 
-        traces::trace_word(lv, *wd, modname, modcode);    
-      traces::trace(lv,L"END sentence",modname,modcode); 
-    }
-  }
-
-  //---------------------------------
-  inline void traces::trace_sentence_list(int lv, const std::list<sentence> &ls, const std::wstring &modname, unsigned long modcode) {   
-    if (traces::TraceLevel>=lv && (traces::TraceModule&modcode)) {
-      for(std::list<sentence>::const_iterator s=ls.begin(); s!=ls.end(); s++) 
-        traces::trace_sentence(lv,*s,modname,modcode);  
-    }
-  }
-
 
 } // namespace
 
 
 /// Macros that must be used to put traces in the code.
 /// They may be either defined or null, depending on -DVERBOSE compilation flag. 
-
-//#define ERROR_CRASH(msg) freeling::traces::error_crash(msg,MOD_TRACENAME)
-
 #define ERROR_CRASH(msg) { std::wcerr<<MOD_TRACENAME<<L": "<<msg<<std::endl; \
                            exit(1); \
                          }
@@ -193,7 +109,6 @@ namespace freeling {
 #ifdef NO_WARNINGS
 #define WARNING(msg)
 #else
-//#define WARNING(msg) freeling::traces::warning(msg,MOD_TRACENAME)
 #define WARNING(msg)  { std::wcerr<<MOD_TRACENAME<<L": "<<msg<<std::endl; }
 #endif
 
@@ -201,11 +116,6 @@ namespace freeling {
 /// Compile without -DVERBOSE (default) to get faster, non-traceable, exploitation version.
 #ifdef VERBOSE   
 /// ifdef VERBOSE --> TRACE macros exists
-//#define TRACE(x,y) freeling::traces::trace(x,y,MOD_TRACENAME,MOD_TRACECODE)
-//#define TRACE_WORD(x,y) freeling::traces::trace_word(x,y,MOD_TRACENAME,MOD_TRACECODE)
-//#define TRACE_WORD_LIST(x,y) freeling::traces::trace_word_list(x,y,MOD_TRACENAME,MOD_TRACECODE)
-//#define TRACE_SENTENCE(x,y) freeling::traces::trace_sentence(x,y,MOD_TRACENAME,MOD_TRACECODE)
-//#define TRACE_SENTENCE_LIST(x,y) freeling::traces::trace_sentence_list(x,y,MOD_TRACENAME,MOD_TRACECODE)
 
 #define TRACE(lv,msg) { if (freeling::traces::TraceLevel>=lv && (freeling::traces::TraceModule&MOD_TRACECODE)) { \
                           std::wcerr << MOD_TRACENAME << L": " << msg << std::endl; \

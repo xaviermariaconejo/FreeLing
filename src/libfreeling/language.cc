@@ -117,6 +117,68 @@ namespace freeling {
 
 
   ////////////////////////////////////////////////////////////////
+  ///   Class alternative stores all info related to a word
+  ///  alternative: form, edit distance
+  ////////////////////////////////////////////////////////////////
+  
+  /// Create an empty alternative
+  alternative::alternative() {
+    form = L"";
+    distance = 0;
+    probability = 0.0f;
+  }
+  /// Create an alternative with form
+  alternative::alternative(const std::wstring &f) {
+    form = f;
+    distance = 0;
+    probability = 0.0f;
+  }
+  /// Create an alternative with form and edit distance
+  alternative::alternative(const std::wstring &f, const int d) {
+    form = f;
+    distance = d;
+    probability = 0.0f;
+  }
+  /// Copy constructor
+  alternative::alternative(const alternative &alt) {
+    form = alt.form;
+    distance = alt.distance;
+    probability = alt.probability;
+    kbest = std::set<int>(alt.kbest);
+  }
+  /// assignment
+  alternative& alternative::operator=(const alternative& alt) {
+    if (this != &alt) {
+      form = alt.form;
+      distance = alt.distance;
+      probability = alt.probability;
+      kbest = std::set<int>(alt.kbest);
+    }
+    return *this;
+  }
+
+  /// Get form of the alternative
+  std::wstring alternative::get_form() const {return form;}
+  /// Get edit distance
+  int alternative::get_distance() const {return distance;}
+  /// Get edit distance probability
+  float alternative::get_probability() const {return probability;}
+  /// Whether the alternative is selected in the kbest path or not
+  bool alternative::is_selected(int k) const {return (kbest.count(k) == 1);}
+  /// Clear the kbest selections
+  void alternative::clear_selections() {kbest.clear();}
+  /// Add a kbest selection
+  void alternative::add_selection(int k) {kbest.insert(k);}
+  /// Set alternative form
+  void alternative::set_form(const std::wstring &f) {form = f;}
+  /// Set alternative distance
+  void alternative::set_distance(int d) {distance = d;}
+  /// Set alternative probability
+  void alternative::set_probability(float p) {probability = p;}
+  /// Comparison operator
+  bool alternative::operator==(const alternative &alt) const {return (alt.form == form);}
+  
+  ////////////////////////////////////////////////////////////////
   ///   Class word stores all info related to a word:
   ///  form, list of analysis, list of tokens (if multiword).
   ////////////////////////////////////////////////////////////////
@@ -126,8 +188,9 @@ namespace freeling {
     form=L"";
     ph_form=L"";
     lc_form=L"";
-    in_dict=true;  // everything is a known word until dictionary fails to find it.
-    locked=false; 
+    analyzed_by=0x0;
+    locked_analysis=false; 
+    locked_multiwords=false; 
     ambiguous_mw=false;
     position=-1;
     start=-1;
@@ -139,8 +202,9 @@ namespace freeling {
     form=f;
     ph_form=L"";
     lc_form=util::lowercase(f);
-    in_dict=true;  // everything is a known word until dictionary fails to find it.
-    locked=false; 
+    analyzed_by=0x0;
+    locked_analysis=false; 
+    locked_multiwords=false; 
     ambiguous_mw=false;
     position=-1;
     start=-1;
@@ -154,8 +218,9 @@ namespace freeling {
     multiword=a;
     start=a.front().get_span_start();
     finish=a.back().get_span_finish();
-    in_dict=true;
-    locked=false;
+    analyzed_by=0x0;
+    locked_analysis=false; 
+    locked_multiwords=false; 
     ambiguous_mw=false;
     position=-1;
   }
@@ -173,8 +238,9 @@ namespace freeling {
     multiword=a;
     start=a.front().get_span_start();
     finish=a.back().get_span_finish();
-    in_dict=true;
-    locked=false;
+    analyzed_by=0x0;
+    locked_analysis=false; 
+    locked_multiwords=false; 
     ambiguous_mw=false;
     position=-1;
   }
@@ -185,8 +251,9 @@ namespace freeling {
     ph_form=w.ph_form;
     multiword=w.multiword;
     start=w.start; finish=w.finish;
-    in_dict=w.in_dict;
-    locked=w.locked;
+    analyzed_by=w.analyzed_by;
+    locked_analysis=w.locked_analysis;
+    locked_multiwords=w.locked_multiwords;
     user=w.user;
     alternatives=w.alternatives;
     copy_analysis(w);
@@ -239,10 +306,6 @@ namespace freeling {
   /// Set token span.
   void word::set_span(unsigned long s, unsigned long e) {start=s; finish=e;}
 
-  /// get in_dict
-  bool word::found_in_dict() const {return (in_dict);}
-  /// set in_dict
-  void word::set_found_in_dict(bool b) {in_dict=b;}
   /// check if there is any retokenizable analysis
   bool word::has_retokenizable() const {
     word::const_iterator i;
@@ -251,31 +314,53 @@ namespace freeling {
     return(has);
   }
 
+  /// control which maco modules added analysis to this word
+  void word::set_analyzed_by(unsigned module) { analyzed_by |= module; }
+  bool word::is_analyzed_by(unsigned module) const { return (analyzed_by & module) != 0; }
+  unsigned word::get_analyzed_by() const { return analyzed_by; }
+
   /// add an alternative to the alternatives list
-  void word::add_alternative(const wstring &w, int d) { alternatives.push_back(make_pair(w,d)); }
+  void word::add_alternative(const alternative &alt) { alternatives.push_back(alt); }
+  /// add an alternative to the alternatives list (wstring, int)
+  void word::add_alternative(const wstring &w, int d) { alternatives.push_back(alternative(w, d)); }
   /// replace alternatives list with list given
-  void word::set_alternatives(const list<pair<wstring,int> > &lw) { alternatives=lw; }
+  void word::set_alternatives(const list<pair<wstring,int> > &lw) {
+    clear_alternatives();
+    for (auto it = lw.begin(); it != lw.end(); it++) {
+      alternatives.push_back(alternative(it->first, it->second));
+    }
+  }
   /// clear alternatives list
   void word::clear_alternatives() { alternatives.clear(); }
   /// find out if the speller checked alternatives
   bool word::has_alternatives() const {return (alternatives.size()>0);}
   /// get alternatives list const &
-  const list<pair<wstring,int> >& word::get_alternatives() const {return(alternatives);}
+  const list<alternative>& word::get_alternatives() const {return(alternatives);}
   /// get alternatives list &
-  list<pair<wstring,int> >& word::get_alternatives() {return(alternatives);}
+  list<alternative>& word::get_alternatives() {return(alternatives);}
   /// get alternatives begin iterator
-  list<pair<wstring,int> >::iterator word::alternatives_begin() {return alternatives.begin();}
+  list<alternative>::iterator word::alternatives_begin() {return alternatives.begin();}
   /// get alternatives end iterator
-  list<pair<wstring,int> >::iterator word::alternatives_end() {return alternatives.end();}
+  list<alternative>::iterator word::alternatives_end() {return alternatives.end();}
   /// get alternatives begin const iterator
-  list<pair<wstring,int> >::const_iterator word::alternatives_begin() const {return alternatives.begin();}
+  list<alternative>::const_iterator word::alternatives_begin() const {return alternatives.begin();}
   /// get alternatives end const iterator
-  list<pair<wstring,int> >::const_iterator word::alternatives_end() const {return alternatives.end();}
+  list<alternative>::const_iterator word::alternatives_end() const {return alternatives.end();}
 
   /// mark word as having definitive analysis
-  void word::lock_analysis() { locked=true; }
+  void word::lock_analysis() { locked_analysis=true; }
+  /// unmark word as having definitive analysis
+  void word::unlock_analysis() { locked_analysis=false; }
   /// check if word is marked as having definitive analysis
-  bool word::is_locked() const { return locked; }
+  bool word::is_locked_analysis() const { return locked_analysis; }
+
+  /// mark word as non-multiwordable
+  void word::lock_multiwords() { locked_multiwords=true; }
+  /// unmark word as non-multiwordable
+  void word::unlock_multiwords() { locked_multiwords=false; }
+  /// check if word is marked as non-multiwordable
+  bool word::is_locked_multiwords() const { return locked_multiwords; }
+
   /// Get length of analysis list.
   int word::get_n_analysis() const {return(this->size());}
   /// get list of analysis (only useful for perl API)
