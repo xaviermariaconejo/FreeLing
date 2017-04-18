@@ -32,9 +32,9 @@
 // //                    "%code top" blocks.
 #line 34 "freeling/morfo/parser.y" // lalr1.cc:397
 
-	#include <iostream>
+  #include <iostream>
     #include <locale>
-	#include <codecvt>
+  #include <codecvt>
     #include "freeling/morfo/scanner.h"
     #include "freeling/morfo/parser.hpp"
     #include "freeling/morfo/atn.h"
@@ -737,405 +737,405 @@ namespace  ATN  {
   case 3:
 #line 134 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-					driver.m_global.insert(yystack_[1].value.as<  std::map<std::wstring, ATN::Data* >  > ().begin(), yystack_[1].value.as<  std::map<std::wstring, ATN::Data* >  > ().end());
-				}
+          driver.m_global.insert(yystack_[1].value.as<  std::map<std::wstring, ATN::Data* >  > ().begin(), yystack_[1].value.as<  std::map<std::wstring, ATN::Data* >  > ().end());
+        }
 #line 743 "parser.cpp" // lalr1.cc:859
     break;
 
   case 4:
 #line 138 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-	   				tree<ASTN*>* t = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-	   				tree<ASTN*>::const_iterator it = t->begin();
-	   				driver.m_func[(*it)->getValueWstring()] = t;
-	   			}
+            tree<ASTN*>* t = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            tree<ASTN*>::const_iterator it = t->begin();
+            driver.m_func[(*it)->getValueWstring()] = t;
+          }
 #line 753 "parser.cpp" // lalr1.cc:859
     break;
 
   case 5:
 #line 144 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-	 				ATNN* t = yystack_[0].value.as<  ATN::ATNN*  > ();
-	   				driver.m_atn[t->getName()] = t;
-	 			}
+          ATNN* t = yystack_[0].value.as<  ATN::ATNN*  > ();
+            driver.m_atn[t->getName()] = t;
+        }
 #line 762 "parser.cpp" // lalr1.cc:859
     break;
 
   case 6:
 #line 152 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				map<wstring, Data* > m;
-				m[converter.from_bytes(yystack_[0].value.as< std::string > ())] = new Data();
-				yylhs.value.as<  std::map<std::wstring, ATN::Data* >  > () = m;
-			}
+        map<wstring, Data* > m;
+        m[converter.from_bytes(yystack_[0].value.as< std::string > ())] = new Data();
+        yylhs.value.as<  std::map<std::wstring, ATN::Data* >  > () = m;
+      }
 #line 772 "parser.cpp" // lalr1.cc:859
     break;
 
   case 7:
 #line 158 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				map<wstring, Data* > m = yystack_[2].value.as<  std::map<std::wstring, ATN::Data* >  > ();
-				m[converter.from_bytes(yystack_[0].value.as< std::string > ())] = new Data();
-				yylhs.value.as<  std::map<std::wstring, ATN::Data* >  > () = m;
-			}
+        map<wstring, Data* > m = yystack_[2].value.as<  std::map<std::wstring, ATN::Data* >  > ();
+        m[converter.from_bytes(yystack_[0].value.as< std::string > ())] = new Data();
+        yylhs.value.as<  std::map<std::wstring, ATN::Data* >  > () = m;
+      }
 #line 782 "parser.cpp" // lalr1.cc:859
     break;
 
   case 8:
 #line 167 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"FUNCTION", converter.from_bytes(yystack_[4].value.as< std::string > ())));
-				const tree<ASTN*>* params = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-				const tree<ASTN*>* body = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"FUNCTION", converter.from_bytes(yystack_[4].value.as< std::string > ())));
+        const tree<ASTN*>* params = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        const tree<ASTN*>* body = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-				t->add_child(*params);
-				t->add_child(*body);
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
-			}
+        t->add_child(*params);
+        t->add_child(*body);
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
+      }
 #line 796 "parser.cpp" // lalr1.cc:859
     break;
 
   case 9:
 #line 180 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-					yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"PARAM LIST"));
-				}
+          yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"PARAM LIST"));
+        }
 #line 804 "parser.cpp" // lalr1.cc:859
     break;
 
   case 10:
 #line 184 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-					tree<ASTN*>* params = new tree<ASTN*>(new ASTN(L"PARAM LIST"));
-					tree<ASTN*>* p = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+          tree<ASTN*>* params = new tree<ASTN*>(new ASTN(L"PARAM LIST"));
+          tree<ASTN*>* p = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-					params->add_child(*p);
-					yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = params;
-				}
+          params->add_child(*p);
+          yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = params;
+        }
 #line 816 "parser.cpp" // lalr1.cc:859
     break;
 
   case 11:
 #line 192 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-					tree<ASTN*>* params = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-					tree<ASTN*>* p = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+          tree<ASTN*>* params = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+          tree<ASTN*>* p = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-					params->add_child(*p);
-					yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = params;
-				}
+          params->add_child(*p);
+          yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = params;
+        }
 #line 828 "parser.cpp" // lalr1.cc:859
     break;
 
   case 12:
 #line 204 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"ANDPERSAND", converter.from_bytes(yystack_[0].value.as< std::string > ())));
-			}
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"ANDPERSAND", converter.from_bytes(yystack_[0].value.as< std::string > ())));
+      }
 #line 836 "parser.cpp" // lalr1.cc:859
     break;
 
   case 13:
 #line 208 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"VALUE", converter.from_bytes(yystack_[0].value.as< std::string > ())));
-			}
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"VALUE", converter.from_bytes(yystack_[0].value.as< std::string > ())));
+      }
 #line 844 "parser.cpp" // lalr1.cc:859
     break;
 
   case 14:
 #line 215 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				ATNN* atnn = new ATNN(converter.from_bytes(yystack_[5].value.as< std::string > ()));
+        ATNN* atnn = new ATNN(converter.from_bytes(yystack_[5].value.as< std::string > ()));
 
-				vector<wstring> init = yystack_[3].value.as<  std::vector<std::wstring>  > ();
-				vector<wstring> fin = yystack_[2].value.as<  std::vector<std::wstring>  > ();
-				map<wstring, tree<ASTN*>*> sts = yystack_[1].value.as<  std::map<std::wstring, freeling::tree<ATN::ASTN*>*>  > ();
-				
-				atnn->setInitials(init);
-				atnn->setFinals(fin);
-				atnn->setStates(sts);
-				yylhs.value.as<  ATN::ATNN*  > () = atnn;
-			}
+        vector<wstring> init = yystack_[3].value.as<  std::vector<std::wstring>  > ();
+        vector<wstring> fin = yystack_[2].value.as<  std::vector<std::wstring>  > ();
+        map<wstring, tree<ASTN*>*> sts = yystack_[1].value.as<  std::map<std::wstring, freeling::tree<ATN::ASTN*>*>  > ();
+        
+        atnn->setInitials(init);
+        atnn->setFinals(fin);
+        atnn->setStates(sts);
+        yylhs.value.as<  ATN::ATNN*  > () = atnn;
+      }
 #line 861 "parser.cpp" // lalr1.cc:859
     break;
 
   case 15:
 #line 228 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				ATNN* atnn = new ATNN(converter.from_bytes(yystack_[5].value.as< std::string > ()));
+        ATNN* atnn = new ATNN(converter.from_bytes(yystack_[5].value.as< std::string > ()));
 
-				vector<wstring> init = yystack_[3].value.as<  std::vector<std::wstring>  > ();
-				vector<wstring> fin = yystack_[1].value.as<  std::vector<std::wstring>  > ();
-				map<wstring, tree<ASTN*>*> sts = yystack_[2].value.as<  std::map<std::wstring, freeling::tree<ATN::ASTN*>*>  > ();
-				
-				atnn->setInitials(init);
-				atnn->setFinals(fin);
-				atnn->setStates(sts);
-				yylhs.value.as<  ATN::ATNN*  > () = atnn;
-			}
+        vector<wstring> init = yystack_[3].value.as<  std::vector<std::wstring>  > ();
+        vector<wstring> fin = yystack_[1].value.as<  std::vector<std::wstring>  > ();
+        map<wstring, tree<ASTN*>*> sts = yystack_[2].value.as<  std::map<std::wstring, freeling::tree<ATN::ASTN*>*>  > ();
+        
+        atnn->setInitials(init);
+        atnn->setFinals(fin);
+        atnn->setStates(sts);
+        yylhs.value.as<  ATN::ATNN*  > () = atnn;
+      }
 #line 878 "parser.cpp" // lalr1.cc:859
     break;
 
   case 16:
 #line 241 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				ATNN* atnn = new ATNN(converter.from_bytes(yystack_[5].value.as< std::string > ()));
+        ATNN* atnn = new ATNN(converter.from_bytes(yystack_[5].value.as< std::string > ()));
 
-				vector<wstring> init = yystack_[2].value.as<  std::vector<std::wstring>  > ();
-				vector<wstring> fin = yystack_[3].value.as<  std::vector<std::wstring>  > ();
-				map<wstring, tree<ASTN*>*> sts = yystack_[1].value.as<  std::map<std::wstring, freeling::tree<ATN::ASTN*>*>  > ();
-				
-				atnn->setInitials(init);
-				atnn->setFinals(fin);
-				atnn->setStates(sts);
-				yylhs.value.as<  ATN::ATNN*  > () = atnn;
-			}
+        vector<wstring> init = yystack_[2].value.as<  std::vector<std::wstring>  > ();
+        vector<wstring> fin = yystack_[3].value.as<  std::vector<std::wstring>  > ();
+        map<wstring, tree<ASTN*>*> sts = yystack_[1].value.as<  std::map<std::wstring, freeling::tree<ATN::ASTN*>*>  > ();
+        
+        atnn->setInitials(init);
+        atnn->setFinals(fin);
+        atnn->setStates(sts);
+        yylhs.value.as<  ATN::ATNN*  > () = atnn;
+      }
 #line 895 "parser.cpp" // lalr1.cc:859
     break;
 
   case 17:
 #line 254 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				ATNN* atnn = new ATNN(converter.from_bytes(yystack_[5].value.as< std::string > ()));
+        ATNN* atnn = new ATNN(converter.from_bytes(yystack_[5].value.as< std::string > ()));
 
-				vector<wstring> init = yystack_[1].value.as<  std::vector<std::wstring>  > ();
-				vector<wstring> fin = yystack_[3].value.as<  std::vector<std::wstring>  > ();
-				map<wstring, tree<ASTN*>*> sts = yystack_[2].value.as<  std::map<std::wstring, freeling::tree<ATN::ASTN*>*>  > ();
-				
-				atnn->setInitials(init);
-				atnn->setFinals(fin);
-				atnn->setStates(sts);
-				yylhs.value.as<  ATN::ATNN*  > () = atnn;
-			}
+        vector<wstring> init = yystack_[1].value.as<  std::vector<std::wstring>  > ();
+        vector<wstring> fin = yystack_[3].value.as<  std::vector<std::wstring>  > ();
+        map<wstring, tree<ASTN*>*> sts = yystack_[2].value.as<  std::map<std::wstring, freeling::tree<ATN::ASTN*>*>  > ();
+        
+        atnn->setInitials(init);
+        atnn->setFinals(fin);
+        atnn->setStates(sts);
+        yylhs.value.as<  ATN::ATNN*  > () = atnn;
+      }
 #line 912 "parser.cpp" // lalr1.cc:859
     break;
 
   case 18:
 #line 267 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				ATNN* atnn = new ATNN(converter.from_bytes(yystack_[5].value.as< std::string > ()));
+        ATNN* atnn = new ATNN(converter.from_bytes(yystack_[5].value.as< std::string > ()));
 
-				vector<wstring> init = yystack_[2].value.as<  std::vector<std::wstring>  > ();
-				vector<wstring> fin = yystack_[1].value.as<  std::vector<std::wstring>  > ();
-				map<wstring, tree<ASTN*>*> sts = yystack_[3].value.as<  std::map<std::wstring, freeling::tree<ATN::ASTN*>*>  > ();
-				
-				atnn->setInitials(init);
-				atnn->setFinals(fin);
-				atnn->setStates(sts);
-				yylhs.value.as<  ATN::ATNN*  > () = atnn;
-			}
+        vector<wstring> init = yystack_[2].value.as<  std::vector<std::wstring>  > ();
+        vector<wstring> fin = yystack_[1].value.as<  std::vector<std::wstring>  > ();
+        map<wstring, tree<ASTN*>*> sts = yystack_[3].value.as<  std::map<std::wstring, freeling::tree<ATN::ASTN*>*>  > ();
+        
+        atnn->setInitials(init);
+        atnn->setFinals(fin);
+        atnn->setStates(sts);
+        yylhs.value.as<  ATN::ATNN*  > () = atnn;
+      }
 #line 929 "parser.cpp" // lalr1.cc:859
     break;
 
   case 19:
 #line 280 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				ATNN* atnn = new ATNN(converter.from_bytes(yystack_[5].value.as< std::string > ()));
+        ATNN* atnn = new ATNN(converter.from_bytes(yystack_[5].value.as< std::string > ()));
 
-				vector<wstring> init = yystack_[1].value.as<  std::vector<std::wstring>  > ();
-				vector<wstring> fin = yystack_[2].value.as<  std::vector<std::wstring>  > ();
-				map<wstring, tree<ASTN*>*> sts = yystack_[3].value.as<  std::map<std::wstring, freeling::tree<ATN::ASTN*>*>  > ();
+        vector<wstring> init = yystack_[1].value.as<  std::vector<std::wstring>  > ();
+        vector<wstring> fin = yystack_[2].value.as<  std::vector<std::wstring>  > ();
+        map<wstring, tree<ASTN*>*> sts = yystack_[3].value.as<  std::map<std::wstring, freeling::tree<ATN::ASTN*>*>  > ();
 
-				atnn->setInitials(init);
-				atnn->setFinals(fin);
-				atnn->setStates(sts);
-				yylhs.value.as<  ATN::ATNN*  > () = atnn;
-			}
+        atnn->setInitials(init);
+        atnn->setFinals(fin);
+        atnn->setStates(sts);
+        yylhs.value.as<  ATN::ATNN*  > () = atnn;
+      }
 #line 946 "parser.cpp" // lalr1.cc:859
     break;
 
   case 20:
 #line 296 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-					vector<wstring> v;
-					tree<ASTN*>* t = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-					tree<ASTN*>::const_iterator it = t->begin();
-					for (int i = 0; i < t->num_children(); ++i) {
-						tree<ASTN*>* tr = new tree<ASTN*>(it.nth_child_ref(i));
-						wstring id = (*(tr->begin()))->getValueWstring();
-						v.push_back(id);
-					}
-					yylhs.value.as<  std::vector<std::wstring>  > () = v;
-				}
+          vector<wstring> v;
+          tree<ASTN*>* t = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+          tree<ASTN*>::const_iterator it = t->begin();
+          for (int i = 0; i < t->num_children(); ++i) {
+            tree<ASTN*>* tr = new tree<ASTN*>(it.nth_child_ref(i));
+            wstring id = (*(tr->begin()))->getValueWstring();
+            v.push_back(id);
+          }
+          yylhs.value.as<  std::vector<std::wstring>  > () = v;
+        }
 #line 962 "parser.cpp" // lalr1.cc:859
     break;
 
   case 21:
 #line 311 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-					vector<wstring> v;
-					tree<ASTN*>* t = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-					tree<ASTN*>::const_iterator it = t->begin();
-					for (int i = 0; i < t->num_children(); ++i) {
-						tree<ASTN*>* tr = new tree<ASTN*>(it.nth_child_ref(i));
-						wstring id = (*(tr->begin()))->getValueWstring();
-						v.push_back(id);
-					}
-					yylhs.value.as<  std::vector<std::wstring>  > () = v;
-				}
+          vector<wstring> v;
+          tree<ASTN*>* t = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+          tree<ASTN*>::const_iterator it = t->begin();
+          for (int i = 0; i < t->num_children(); ++i) {
+            tree<ASTN*>* tr = new tree<ASTN*>(it.nth_child_ref(i));
+            wstring id = (*(tr->begin()))->getValueWstring();
+            v.push_back(id);
+          }
+          yylhs.value.as<  std::vector<std::wstring>  > () = v;
+        }
 #line 978 "parser.cpp" // lalr1.cc:859
     break;
 
   case 22:
 #line 326 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"ID LIST"));
-				tree<ASTN*>* id = new tree<ASTN*>(new ASTN(L"ID", converter.from_bytes(yystack_[0].value.as< std::string > ())));
+        tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"ID LIST"));
+        tree<ASTN*>* id = new tree<ASTN*>(new ASTN(L"ID", converter.from_bytes(yystack_[0].value.as< std::string > ())));
 
-				t->add_child(*id);
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
-			}
+        t->add_child(*id);
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
+      }
 #line 990 "parser.cpp" // lalr1.cc:859
     break;
 
   case 23:
 #line 334 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				tree<ASTN*>* t = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-				tree<ASTN*>* id = new tree<ASTN*>(new ASTN(L"ID", converter.from_bytes(yystack_[0].value.as< std::string > ())));
+        tree<ASTN*>* t = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        tree<ASTN*>* id = new tree<ASTN*>(new ASTN(L"ID", converter.from_bytes(yystack_[0].value.as< std::string > ())));
 
-				t->add_child(*id);
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
-			}
+        t->add_child(*id);
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
+      }
 #line 1002 "parser.cpp" // lalr1.cc:859
     break;
 
   case 24:
 #line 345 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				map<wstring, tree<ASTN*>*> m;
-				tree<ASTN*>* t = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-				m[(*(t->begin()))->getValueWstring()] = t;
-				yylhs.value.as<  std::map<std::wstring, freeling::tree<ATN::ASTN*>*>  > () = m;
-			}
+        map<wstring, tree<ASTN*>*> m;
+        tree<ASTN*>* t = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        m[(*(t->begin()))->getValueWstring()] = t;
+        yylhs.value.as<  std::map<std::wstring, freeling::tree<ATN::ASTN*>*>  > () = m;
+      }
 #line 1013 "parser.cpp" // lalr1.cc:859
     break;
 
   case 25:
 #line 352 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				map<wstring, tree<ASTN*>*> m = yystack_[1].value.as<  std::map<std::wstring, freeling::tree<ATN::ASTN*>*>  > ();
-				tree<ASTN*>* t = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-				m[(*(t->begin()))->getValueWstring()] = t;
-				yylhs.value.as<  std::map<std::wstring, freeling::tree<ATN::ASTN*>*>  > () = m;
-			}
+        map<wstring, tree<ASTN*>*> m = yystack_[1].value.as<  std::map<std::wstring, freeling::tree<ATN::ASTN*>*>  > ();
+        tree<ASTN*>* t = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        m[(*(t->begin()))->getValueWstring()] = t;
+        yylhs.value.as<  std::map<std::wstring, freeling::tree<ATN::ASTN*>*>  > () = m;
+      }
 #line 1024 "parser.cpp" // lalr1.cc:859
     break;
 
   case 26:
 #line 362 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"STATE", converter.from_bytes(yystack_[8].value.as< std::string > ())));
-				
-				tree<ASTN*>* act = new tree<ASTN*>(new ASTN(L"ACTION"));
-				tree<ASTN*>* instr = yystack_[5].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-				act->add_child(*instr);
+        tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"STATE", converter.from_bytes(yystack_[8].value.as< std::string > ())));
+        
+        tree<ASTN*>* act = new tree<ASTN*>(new ASTN(L"ACTION"));
+        tree<ASTN*>* instr = yystack_[5].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        act->add_child(*instr);
 
-				tree<ASTN*>* trans = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        tree<ASTN*>* trans = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-				t->add_child(*act);
-				t->add_child(*trans);
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
-			}
+        t->add_child(*act);
+        t->add_child(*trans);
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
+      }
 #line 1042 "parser.cpp" // lalr1.cc:859
     break;
 
   case 27:
 #line 376 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"STATE", converter.from_bytes(yystack_[8].value.as< std::string > ())));
-				
-				tree<ASTN*>* act = new tree<ASTN*>(new ASTN(L"ACTION"));
-				tree<ASTN*>* instr = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-				act->add_child(*instr);
+        tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"STATE", converter.from_bytes(yystack_[8].value.as< std::string > ())));
+        
+        tree<ASTN*>* act = new tree<ASTN*>(new ASTN(L"ACTION"));
+        tree<ASTN*>* instr = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        act->add_child(*instr);
 
-				tree<ASTN*>* trans = yystack_[4].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        tree<ASTN*>* trans = yystack_[4].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-				t->add_child(*act);
-				t->add_child(*trans);
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
-			}
+        t->add_child(*act);
+        t->add_child(*trans);
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
+      }
 #line 1060 "parser.cpp" // lalr1.cc:859
     break;
 
   case 28:
 #line 393 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-							yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"TRANSITION"));
-						}
+              yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"TRANSITION"));
+            }
 #line 1068 "parser.cpp" // lalr1.cc:859
     break;
 
   case 29:
 #line 397 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-							tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"TRANSITION"));
-							tree<ASTN*>* trans = new tree<ASTN*>(new ASTN(L"TO"));
-							tree<ASTN*>* id = new tree<ASTN*>(new ASTN(L"ID", converter.from_bytes(yystack_[5].value.as< std::string > ())));
-							tree<ASTN*>* cond = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+              tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"TRANSITION"));
+              tree<ASTN*>* trans = new tree<ASTN*>(new ASTN(L"TO"));
+              tree<ASTN*>* id = new tree<ASTN*>(new ASTN(L"ID", converter.from_bytes(yystack_[5].value.as< std::string > ())));
+              tree<ASTN*>* cond = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-							trans->add_child(*id);
-							trans->add_child(*cond);
-							t->add_child(*trans);
-							yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
-						}
+              trans->add_child(*id);
+              trans->add_child(*cond);
+              t->add_child(*trans);
+              yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
+            }
 #line 1084 "parser.cpp" // lalr1.cc:859
     break;
 
   case 30:
 #line 409 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-							tree<ASTN*>* t = yystack_[7].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-							tree<ASTN*>* trans = new tree<ASTN*>(new ASTN(L"TO"));
-							tree<ASTN*>* id = new tree<ASTN*>(new ASTN(L"ID", converter.from_bytes(yystack_[5].value.as< std::string > ())));
-							tree<ASTN*>* cond = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+              tree<ASTN*>* t = yystack_[7].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+              tree<ASTN*>* trans = new tree<ASTN*>(new ASTN(L"TO"));
+              tree<ASTN*>* id = new tree<ASTN*>(new ASTN(L"ID", converter.from_bytes(yystack_[5].value.as< std::string > ())));
+              tree<ASTN*>* cond = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-							trans->add_child(*id);
-							trans->add_child(*cond);
-							t->add_child(*trans);
-							yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
-						}
+              trans->add_child(*id);
+              trans->add_child(*cond);
+              t->add_child(*trans);
+              yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
+            }
 #line 1100 "parser.cpp" // lalr1.cc:859
     break;
 
   case 31:
 #line 424 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-							yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-						}
+              yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            }
 #line 1108 "parser.cpp" // lalr1.cc:859
     break;
 
   case 32:
 #line 431 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-							yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"BODY"));
-						}
+              yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"BODY"));
+            }
 #line 1116 "parser.cpp" // lalr1.cc:859
     break;
 
   case 33:
 #line 435 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-							tree<ASTN*>* body = new tree<ASTN*>(new ASTN(L"BODY"));
-							tree<ASTN*>* instruction = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+              tree<ASTN*>* body = new tree<ASTN*>(new ASTN(L"BODY"));
+              tree<ASTN*>* instruction = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-							body->add_child(*instruction);
-							yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = body;
-						}
+              body->add_child(*instruction);
+              yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = body;
+            }
 #line 1128 "parser.cpp" // lalr1.cc:859
     break;
 
   case 34:
 #line 443 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-							tree<ASTN*>* body = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-							tree<ASTN*>* instruction = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+              tree<ASTN*>* body = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+              tree<ASTN*>* instruction = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-							body->add_child(*instruction);
-							yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = body;
-						}
+              body->add_child(*instruction);
+              yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = body;
+            }
 #line 1140 "parser.cpp" // lalr1.cc:859
     break;
 
@@ -1194,182 +1194,182 @@ namespace  ATN  {
     break;
 
   case 44:
-#line 476 "freeling/morfo/parser.y" // lalr1.cc:859
-    {
-				tree<ASTN*>* instr = new tree<ASTN*>(new ASTN(L"ASSIGMENT"));
-				tree<ASTN*>* id = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-				tree<ASTN*>* body = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-
-				instr->add_child(*id);
-				instr->add_child(*body);
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = instr;
-			}
-#line 1208 "parser.cpp" // lalr1.cc:859
+#line 473 "freeling/morfo/parser.y" // lalr1.cc:859
+    { yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > (); }
+#line 1200 "parser.cpp" // lalr1.cc:859
     break;
 
   case 45:
-#line 489 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 478 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"TOKEN ID", converter.from_bytes(yystack_[0].value.as< std::string > ())));
-			}
-#line 1216 "parser.cpp" // lalr1.cc:859
+        tree<ASTN*>* instr = new tree<ASTN*>(new ASTN(L"ASSIGMENT"));
+        tree<ASTN*>* id = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        tree<ASTN*>* body = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+
+        instr->add_child(*id);
+        instr->add_child(*body);
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = instr;
+      }
+#line 1214 "parser.cpp" // lalr1.cc:859
     break;
 
   case 46:
-#line 493 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 491 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"OBJECT ACCES"));
-				tree<ASTN*>* id = new tree<ASTN*>(new ASTN(L"ID", converter.from_bytes(yystack_[2].value.as< std::string > ())));
-				tree<ASTN*>* pos = new tree<ASTN*>(new ASTN(L"POSITION", converter.from_bytes(yystack_[0].value.as< std::string > ())));
-
-				n->add_child(*id);
-				n->add_child(*pos);
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-			}
-#line 1230 "parser.cpp" // lalr1.cc:859
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"TOKEN ID", converter.from_bytes(yystack_[0].value.as< std::string > ())));
+      }
+#line 1222 "parser.cpp" // lalr1.cc:859
     break;
 
   case 47:
-#line 503 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 495 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"ARRAY ACCES"));
-				tree<ASTN*>* id = new tree<ASTN*>(new ASTN(L"ID", converter.from_bytes(yystack_[3].value.as< std::string > ())));
-				tree<ASTN*>* pos = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"OBJECT ACCES"));
+        tree<ASTN*>* id = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        tree<ASTN*>* pos = new tree<ASTN*>(new ASTN(L"POSITION", converter.from_bytes(yystack_[0].value.as< std::string > ())));
 
-				n->add_child(*id);
-				n->add_child(*pos);
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-			}
-#line 1244 "parser.cpp" // lalr1.cc:859
+        n->add_child(*id);
+        n->add_child(*pos);
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+      }
+#line 1236 "parser.cpp" // lalr1.cc:859
     break;
 
   case 48:
-#line 516 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 505 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-					tree<ASTN*>* ite = new tree<ASTN*>(new ASTN(L"IF ELSE IF ELSE"));
-					tree<ASTN*>* condition = yystack_[4].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-					tree<ASTN*>* body = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-					tree<ASTN*>* elseif = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-					tree<ASTN*>* else_tree = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"ARRAY ACCES"));
+        tree<ASTN*>* id = yystack_[3].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        tree<ASTN*>* pos = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-					ite->add_child(*condition);
-					ite->add_child(*body);
-					ite->add_child(*elseif);
-					ite->add_child(*else_tree);
-					yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = ite;
-				}
-#line 1262 "parser.cpp" // lalr1.cc:859
+        n->add_child(*id);
+        n->add_child(*pos);
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+      }
+#line 1250 "parser.cpp" // lalr1.cc:859
     break;
 
   case 49:
-#line 533 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 518 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"ELSE IF"));
-			}
-#line 1270 "parser.cpp" // lalr1.cc:859
+          tree<ASTN*>* ite = new tree<ASTN*>(new ASTN(L"IF ELSE IF ELSE"));
+          tree<ASTN*>* condition = yystack_[4].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+          tree<ASTN*>* body = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+          tree<ASTN*>* elseif = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+          tree<ASTN*>* else_tree = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+
+          ite->add_child(*condition);
+          ite->add_child(*body);
+          ite->add_child(*elseif);
+          ite->add_child(*else_tree);
+          yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = ite;
+        }
+#line 1268 "parser.cpp" // lalr1.cc:859
     break;
 
   case 50:
-#line 537 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 535 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				tree<ASTN*>* elif = new tree<ASTN*>(new ASTN(L"ELSE IF"));
-				tree<ASTN*>* condition = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-				tree<ASTN*>* body = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-
-				elif->add_child(*condition);
-				elif->add_child(*body);
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = elif;
-			}
-#line 1284 "parser.cpp" // lalr1.cc:859
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"ELSE IF"));
+      }
+#line 1276 "parser.cpp" // lalr1.cc:859
     break;
 
   case 51:
-#line 547 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 539 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				tree<ASTN*>* elif = yystack_[5].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-				tree<ASTN*>* condition = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-				tree<ASTN*>* body = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        tree<ASTN*>* elif = new tree<ASTN*>(new ASTN(L"ELSE IF"));
+        tree<ASTN*>* condition = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        tree<ASTN*>* body = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-				elif->add_child(*condition);
-				elif->add_child(*body);
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = elif;
-			}
-#line 1298 "parser.cpp" // lalr1.cc:859
+        elif->add_child(*condition);
+        elif->add_child(*body);
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = elif;
+      }
+#line 1290 "parser.cpp" // lalr1.cc:859
     break;
 
   case 52:
-#line 560 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 549 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"ELSE"));
-			}
-#line 1306 "parser.cpp" // lalr1.cc:859
+        tree<ASTN*>* elif = yystack_[5].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        tree<ASTN*>* condition = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        tree<ASTN*>* body = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+
+        elif->add_child(*condition);
+        elif->add_child(*body);
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = elif;
+      }
+#line 1304 "parser.cpp" // lalr1.cc:859
     break;
 
   case 53:
-#line 564 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 562 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"ELSE"));
-				tree<ASTN*>* body = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-
-				t->add_child(*body);
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
-			}
-#line 1318 "parser.cpp" // lalr1.cc:859
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"ELSE"));
+      }
+#line 1312 "parser.cpp" // lalr1.cc:859
     break;
 
   case 54:
-#line 575 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 566 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-					tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"WHILE"));
-					tree<ASTN*>* condition = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-					tree<ASTN*>* body = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"ELSE"));
+        tree<ASTN*>* body = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-					t->add_child(*condition);
-					t->add_child(*body);
-					yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
-				}
-#line 1332 "parser.cpp" // lalr1.cc:859
+        t->add_child(*body);
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
+      }
+#line 1324 "parser.cpp" // lalr1.cc:859
     break;
 
   case 55:
-#line 588 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 577 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-					tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"FOR"));
-					tree<ASTN*>* init = yystack_[6].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-					tree<ASTN*>* condition = yystack_[4].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-					tree<ASTN*>* final = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-					tree<ASTN*>* body = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+          tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"WHILE"));
+          tree<ASTN*>* condition = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+          tree<ASTN*>* body = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-					t->add_child(*init);
-					t->add_child(*condition);
-					t->add_child(*final);
-					t->add_child(*body);
-					yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
-				}
-#line 1350 "parser.cpp" // lalr1.cc:859
+          t->add_child(*condition);
+          t->add_child(*body);
+          yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
+        }
+#line 1338 "parser.cpp" // lalr1.cc:859
     break;
 
   case 56:
-#line 605 "freeling/morfo/parser.y" // lalr1.cc:859
-    { yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"ASSIGMENT")); }
+#line 590 "freeling/morfo/parser.y" // lalr1.cc:859
+    {
+          tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"FOR"));
+          tree<ASTN*>* init = yystack_[6].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+          tree<ASTN*>* condition = yystack_[4].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+          tree<ASTN*>* final = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+          tree<ASTN*>* body = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+
+          t->add_child(*init);
+          t->add_child(*condition);
+          t->add_child(*final);
+          t->add_child(*body);
+          yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
+        }
 #line 1356 "parser.cpp" // lalr1.cc:859
     break;
 
   case 57:
 #line 607 "freeling/morfo/parser.y" // lalr1.cc:859
-    { yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > (); }
+    { yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"ASSIGMENT")); }
 #line 1362 "parser.cpp" // lalr1.cc:859
     break;
 
   case 58:
-#line 612 "freeling/morfo/parser.y" // lalr1.cc:859
-    { yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"INCREMENTAL")); }
+#line 609 "freeling/morfo/parser.y" // lalr1.cc:859
+    { yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > (); }
 #line 1368 "parser.cpp" // lalr1.cc:859
     break;
 
   case 59:
 #line 614 "freeling/morfo/parser.y" // lalr1.cc:859
-    { yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > (); }
+    { yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"INCREMENTAL")); }
 #line 1374 "parser.cpp" // lalr1.cc:859
     break;
 
@@ -1380,591 +1380,571 @@ namespace  ATN  {
     break;
 
   case 61:
-#line 621 "freeling/morfo/parser.y" // lalr1.cc:859
-    {
-					tree<ASTN*>* dowhile = new tree<ASTN*>(new ASTN(L"DO WHILE"));
-					tree<ASTN*>* body = yystack_[4].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-					tree<ASTN*>* condition = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-
-					dowhile->add_child(*body);
-					dowhile->add_child(*condition);
-					yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = dowhile;
-				}
-#line 1394 "parser.cpp" // lalr1.cc:859
+#line 618 "freeling/morfo/parser.y" // lalr1.cc:859
+    { yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > (); }
+#line 1386 "parser.cpp" // lalr1.cc:859
     break;
 
   case 62:
-#line 633 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 623 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-					yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"RETURN"));
-				}
-#line 1402 "parser.cpp" // lalr1.cc:859
+          tree<ASTN*>* dowhile = new tree<ASTN*>(new ASTN(L"DO WHILE"));
+          tree<ASTN*>* body = yystack_[4].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+          tree<ASTN*>* condition = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+
+          dowhile->add_child(*body);
+          dowhile->add_child(*condition);
+          yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = dowhile;
+        }
+#line 1400 "parser.cpp" // lalr1.cc:859
     break;
 
   case 63:
-#line 637 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 635 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-					tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"RETURN"));
-					tree<ASTN*>* expr = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-
-					t->add_child(*expr);
-					yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
-				}
-#line 1414 "parser.cpp" // lalr1.cc:859
+          yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"RETURN"));
+        }
+#line 1408 "parser.cpp" // lalr1.cc:859
     break;
 
   case 64:
-#line 648 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 639 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-					tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"PRINT"));
-					tree<ASTN*>* e = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+          tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"RETURN"));
+          tree<ASTN*>* expr = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-					t->add_child(*e);
-					yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
-				}
-#line 1426 "parser.cpp" // lalr1.cc:859
+          t->add_child(*expr);
+          yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
+        }
+#line 1420 "parser.cpp" // lalr1.cc:859
     break;
 
   case 65:
-#line 659 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 650 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-					tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"PRINT LIST"));
-					tree<ASTN*>* e = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+          tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"PRINT"));
+          tree<ASTN*>* e = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-					t->add_child(*e);
-					yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
-				}
-#line 1438 "parser.cpp" // lalr1.cc:859
+          t->add_child(*e);
+          yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
+        }
+#line 1432 "parser.cpp" // lalr1.cc:859
     break;
 
   case 66:
-#line 667 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 661 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-					tree<ASTN*>* t = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-					tree<ASTN*>* e = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+          tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"PRINT LIST"));
+          tree<ASTN*>* e = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-					t->add_child(*e);
-					yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
-				}
-#line 1450 "parser.cpp" // lalr1.cc:859
+          t->add_child(*e);
+          yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
+        }
+#line 1444 "parser.cpp" // lalr1.cc:859
     break;
 
   case 67:
-#line 677 "freeling/morfo/parser.y" // lalr1.cc:859
-    { yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > (); }
+#line 669 "freeling/morfo/parser.y" // lalr1.cc:859
+    {
+          tree<ASTN*>* t = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+          tree<ASTN*>* e = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+
+          t->add_child(*e);
+          yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
+        }
 #line 1456 "parser.cpp" // lalr1.cc:859
     break;
 
   case 68:
 #line 679 "freeling/morfo/parser.y" // lalr1.cc:859
-    { yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"ENDL")); }
+    { yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > (); }
 #line 1462 "parser.cpp" // lalr1.cc:859
     break;
 
   case 69:
-#line 683 "freeling/morfo/parser.y" // lalr1.cc:859
-    { yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > (); }
+#line 681 "freeling/morfo/parser.y" // lalr1.cc:859
+    { yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"ENDL")); }
 #line 1468 "parser.cpp" // lalr1.cc:859
     break;
 
   case 70:
-#line 684 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 685 "freeling/morfo/parser.y" // lalr1.cc:859
     { yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > (); }
 #line 1474 "parser.cpp" // lalr1.cc:859
     break;
 
   case 71:
-#line 685 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 686 "freeling/morfo/parser.y" // lalr1.cc:859
     { yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > (); }
 #line 1480 "parser.cpp" // lalr1.cc:859
     break;
 
   case 72:
-#line 686 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 687 "freeling/morfo/parser.y" // lalr1.cc:859
     { yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > (); }
 #line 1486 "parser.cpp" // lalr1.cc:859
     break;
 
   case 73:
-#line 691 "freeling/morfo/parser.y" // lalr1.cc:859
-    {
-				bool b = yystack_[0].value.as< std::string > () == "true" || yystack_[0].value.as< std::string > () == "TRUE";
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"TOKEN BOOL", b));
-			}
-#line 1495 "parser.cpp" // lalr1.cc:859
+#line 688 "freeling/morfo/parser.y" // lalr1.cc:859
+    { yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > (); }
+#line 1492 "parser.cpp" // lalr1.cc:859
     break;
 
   case 74:
-#line 696 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 693 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"TOKEN INT", yystack_[0].value.as< int > ()));
-			}
-#line 1503 "parser.cpp" // lalr1.cc:859
+        bool b = yystack_[0].value.as< std::string > () == "true" || yystack_[0].value.as< std::string > () == "TRUE";
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"TOKEN BOOL", b));
+      }
+#line 1501 "parser.cpp" // lalr1.cc:859
     break;
 
   case 75:
-#line 700 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 698 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"TOKEN DOUBLE", yystack_[0].value.as< float > ()));
-			}
-#line 1511 "parser.cpp" // lalr1.cc:859
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"TOKEN INT", yystack_[0].value.as< int > ()));
+      }
+#line 1509 "parser.cpp" // lalr1.cc:859
     break;
 
   case 76:
-#line 704 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 702 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				string s = yystack_[0].value.as< std::string > ().substr(1, yystack_[0].value.as< std::string > ().length() - 2);
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"TOKEN STRING", converter.from_bytes(s)));
-			}
-#line 1520 "parser.cpp" // lalr1.cc:859
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"TOKEN DOUBLE", yystack_[0].value.as< float > ()));
+      }
+#line 1517 "parser.cpp" // lalr1.cc:859
     break;
 
   case 77:
-#line 709 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 706 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"TOKEN ID", converter.from_bytes(yystack_[0].value.as< std::string > ())));
-			}
-#line 1528 "parser.cpp" // lalr1.cc:859
+        string s = yystack_[0].value.as< std::string > ().substr(1, yystack_[0].value.as< std::string > ().length() - 2);
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"TOKEN STRING", converter.from_bytes(s)));
+      }
+#line 1526 "parser.cpp" // lalr1.cc:859
     break;
 
   case 78:
-#line 713 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 711 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"OBJECT ACCES"));
-				tree<ASTN*>* id = new tree<ASTN*>(new ASTN(L"ID", converter.from_bytes(yystack_[2].value.as< std::string > ())));
-				tree<ASTN*>* pos = new tree<ASTN*>(new ASTN(L"POSITION", converter.from_bytes(yystack_[0].value.as< std::string > ())));
-
-				n->add_child(*id);
-				n->add_child(*pos);
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-			}
-#line 1542 "parser.cpp" // lalr1.cc:859
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+      }
+#line 1534 "parser.cpp" // lalr1.cc:859
     break;
 
   case 79:
-#line 723 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 715 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"ARRAY ACCES"));
-				tree<ASTN*>* id = new tree<ASTN*>(new ASTN(L"ID", converter.from_bytes(yystack_[3].value.as< std::string > ())));
-				tree<ASTN*>* pos = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"TOKEN OBJECT"));
+        tree<ASTN*>* list = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-				n->add_child(*id);
-				n->add_child(*pos);
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-			}
-#line 1556 "parser.cpp" // lalr1.cc:859
+        n->add_child(*list);
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+      }
+#line 1546 "parser.cpp" // lalr1.cc:859
     break;
 
   case 80:
-#line 733 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 723 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"TOKEN OBJECT"));
-				tree<ASTN*>* list = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"TOKEN ARRAY"));
+        tree<ASTN*>* list = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-				n->add_child(*list);
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-			}
-#line 1568 "parser.cpp" // lalr1.cc:859
+        n->add_child(*list);
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+      }
+#line 1558 "parser.cpp" // lalr1.cc:859
     break;
 
   case 81:
-#line 741 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 731 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"TOKEN ARRAY"));
-				tree<ASTN*>* list = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-
-				n->add_child(*list);
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-			}
-#line 1580 "parser.cpp" // lalr1.cc:859
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+      }
+#line 1566 "parser.cpp" // lalr1.cc:859
     break;
 
   case 82:
-#line 749 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 735 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-			}
-#line 1588 "parser.cpp" // lalr1.cc:859
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+      }
+#line 1574 "parser.cpp" // lalr1.cc:859
     break;
 
   case 83:
-#line 753 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 739 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-			}
-#line 1596 "parser.cpp" // lalr1.cc:859
+        tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"NOT"));
+        tree<ASTN*>* expr = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+
+        n->add_child(*expr);
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+      }
+#line 1586 "freeling/morfo/parser.cpp" // lalr1.cc:859
     break;
 
   case 84:
-#line 757 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 747 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"NOT"));
-				tree<ASTN*>* expr = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"NEG"));
+        tree<ASTN*>* expr = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-				n->add_child(*expr);
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-			}
-#line 1608 "parser.cpp" // lalr1.cc:859
+        n->add_child(*expr);
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+      }
+#line 1598 "parser.cpp" // lalr1.cc:859
     break;
 
   case 85:
-#line 765 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 755 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"NEG"));
-				tree<ASTN*>* expr = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"POS"));
+        tree<ASTN*>* expr = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-				n->add_child(*expr);
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-			}
-#line 1620 "parser.cpp" // lalr1.cc:859
+        n->add_child(*expr);
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+      }
+#line 1610 "parser.cpp" // lalr1.cc:859
     break;
 
   case 86:
-#line 773 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 763 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"POS"));
-				tree<ASTN*>* expr = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-
-				n->add_child(*expr);
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-			}
-#line 1632 "parser.cpp" // lalr1.cc:859
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+      }
+#line 1618 "parser.cpp" // lalr1.cc:859
     break;
 
   case 87:
-#line 781 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 771 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-			}
-#line 1640 "parser.cpp" // lalr1.cc:859
+              tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"PLUS"));
+              tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+              tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+
+              n->add_child(*expr1);
+              n->add_child(*expr2);
+              yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+            }
+#line 1632 "parser.cpp" // lalr1.cc:859
     break;
 
   case 88:
-#line 789 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 781 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-							tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"PLUS"));
-							tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-							tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+              tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"MINUS"));
+              tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+              tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-							n->add_child(*expr1);
-							n->add_child(*expr2);
-							yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-						}
-#line 1654 "parser.cpp" // lalr1.cc:859
+              n->add_child(*expr1);
+              n->add_child(*expr2);
+              yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+            }
+#line 1646 "parser.cpp" // lalr1.cc:859
     break;
 
   case 89:
-#line 799 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 791 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-							tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"MINUS"));
-							tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-							tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+              tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"MULT"));
+              tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+              tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-							n->add_child(*expr1);
-							n->add_child(*expr2);
-							yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-						}
-#line 1668 "parser.cpp" // lalr1.cc:859
+              n->add_child(*expr1);
+              n->add_child(*expr2);
+              yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+            }
+#line 1660 "parser.cpp" // lalr1.cc:859
     break;
 
   case 90:
-#line 809 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 801 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-							tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"MULT"));
-							tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-							tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+              tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"DIV"));
+              tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+              tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-							n->add_child(*expr1);
-							n->add_child(*expr2);
-							yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-						}
-#line 1682 "parser.cpp" // lalr1.cc:859
+              n->add_child(*expr1);
+              n->add_child(*expr2);
+              yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+            }
+#line 1674 "parser.cpp" // lalr1.cc:859
     break;
 
   case 91:
-#line 819 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 811 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-							tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"DIV"));
-							tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-							tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+              tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"MOD"));
+              tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+              tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-							n->add_child(*expr1);
-							n->add_child(*expr2);
-							yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-						}
-#line 1696 "parser.cpp" // lalr1.cc:859
+              n->add_child(*expr1);
+              n->add_child(*expr2);
+              yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+            }
+#line 1688 "parser.cpp" // lalr1.cc:859
     break;
 
   case 92:
-#line 829 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 824 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-							tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"MOD"));
-							tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-							tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"EQUAL"));
+            tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-							n->add_child(*expr1);
-							n->add_child(*expr2);
-							yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-						}
-#line 1710 "parser.cpp" // lalr1.cc:859
+            n->add_child(*expr1);
+            n->add_child(*expr2);
+            yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+          }
+#line 1702 "parser.cpp" // lalr1.cc:859
     break;
 
   case 93:
-#line 842 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 834 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-						tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"EQUAL"));
-						tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-						tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"NOT_EQUAL"));
+            tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-						n->add_child(*expr1);
-						n->add_child(*expr2);
-						yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-					}
-#line 1724 "parser.cpp" // lalr1.cc:859
+            n->add_child(*expr1);
+            n->add_child(*expr2);
+            yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+          }
+#line 1716 "parser.cpp" // lalr1.cc:859
     break;
 
   case 94:
-#line 852 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 844 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-						tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"NOT_EQUAL"));
-						tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-						tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"LT"));
+            tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-						n->add_child(*expr1);
-						n->add_child(*expr2);
-						yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-					}
-#line 1738 "parser.cpp" // lalr1.cc:859
+            n->add_child(*expr1);
+            n->add_child(*expr2);
+            yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+          }
+#line 1730 "parser.cpp" // lalr1.cc:859
     break;
 
   case 95:
-#line 862 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 854 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-						tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"LT"));
-						tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-						tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"LE"));
+            tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-						n->add_child(*expr1);
-						n->add_child(*expr2);
-						yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-					}
-#line 1752 "parser.cpp" // lalr1.cc:859
+            n->add_child(*expr1);
+            n->add_child(*expr2);
+            yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+          }
+#line 1744 "parser.cpp" // lalr1.cc:859
     break;
 
   case 96:
-#line 872 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 864 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-						tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"LE"));
-						tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-						tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"GT"));
+            tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-						n->add_child(*expr1);
-						n->add_child(*expr2);
-						yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-					}
-#line 1766 "parser.cpp" // lalr1.cc:859
+            n->add_child(*expr1);
+            n->add_child(*expr2);
+            yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+          }
+#line 1758 "parser.cpp" // lalr1.cc:859
     break;
 
   case 97:
-#line 882 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 874 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-						tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"GT"));
-						tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-						tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"GE"));
+            tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-						n->add_child(*expr1);
-						n->add_child(*expr2);
-						yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-					}
-#line 1780 "parser.cpp" // lalr1.cc:859
+            n->add_child(*expr1);
+            n->add_child(*expr2);
+            yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+          }
+#line 1772 "parser.cpp" // lalr1.cc:859
     break;
 
   case 98:
-#line 892 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 884 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-						tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"GE"));
-						tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-						tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"AND"));
+            tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-						n->add_child(*expr1);
-						n->add_child(*expr2);
-						yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-					}
-#line 1794 "parser.cpp" // lalr1.cc:859
+            n->add_child(*expr1);
+            n->add_child(*expr2);
+            yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+          }
+#line 1786 "parser.cpp" // lalr1.cc:859
     break;
 
   case 99:
-#line 902 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 894 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-						tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"AND"));
-						tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-						tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"OR"));
+            tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-						n->add_child(*expr1);
-						n->add_child(*expr2);
-						yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-					}
-#line 1808 "parser.cpp" // lalr1.cc:859
+            n->add_child(*expr1);
+            n->add_child(*expr2);
+            yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+          }
+#line 1800 "parser.cpp" // lalr1.cc:859
     break;
 
   case 100:
-#line 912 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 907 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-						tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"OR"));
-						tree<ASTN*>* expr1 = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-						tree<ASTN*>* expr2 = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"LOCAL FUNCTION", converter.from_bytes(yystack_[3].value.as< std::string > ())));
+            tree<ASTN*>* id = yystack_[5].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            tree<ASTN*>* list = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-						n->add_child(*expr1);
-						n->add_child(*expr2);
-						yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-					}
-#line 1822 "parser.cpp" // lalr1.cc:859
+            n->add_child(*id);
+            n->add_child(*list);
+            yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+          }
+#line 1814 "parser.cpp" // lalr1.cc:859
     break;
 
   case 101:
-#line 925 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 920 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-						tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"LOCAL FUNCTION", converter.from_bytes(yystack_[3].value.as< std::string > ())));
-						tree<ASTN*>* id = new tree<ASTN*>(new ASTN(L"ID", converter.from_bytes(yystack_[5].value.as< std::string > ())));
-						tree<ASTN*>* list = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+              tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"DPLUS"));
+              tree<ASTN*>* e = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-						n->add_child(*id);
-						n->add_child(*list);
-						yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-					}
-#line 1836 "parser.cpp" // lalr1.cc:859
+              n->add_child(*e);
+              yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+            }
+#line 1826 "parser.cpp" // lalr1.cc:859
     break;
 
   case 102:
-#line 938 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 928 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-							tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"DPLUS"));
-							tree<ASTN*>* e = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+              tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"DPLUSR"));
+              tree<ASTN*>* e = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-							n->add_child(*e);
-							yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-						}
-#line 1848 "parser.cpp" // lalr1.cc:859
+              n->add_child(*e);
+              yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+            }
+#line 1838 "parser.cpp" // lalr1.cc:859
     break;
 
   case 103:
-#line 946 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 936 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-							tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"DPLUSR"));
-							tree<ASTN*>* e = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+              tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"DMINUS"));
+              tree<ASTN*>* e = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-							n->add_child(*e);
-							yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-						}
-#line 1860 "parser.cpp" // lalr1.cc:859
+              n->add_child(*e);
+              yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+            }
+#line 1850 "parser.cpp" // lalr1.cc:859
     break;
 
   case 104:
-#line 954 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 944 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-							tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"DMINUS"));
-							tree<ASTN*>* e = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+              tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"DMINUSR"));
+              tree<ASTN*>* e = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-							n->add_child(*e);
-							yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-						}
-#line 1872 "parser.cpp" // lalr1.cc:859
+              n->add_child(*e);
+              yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
+            }
+#line 1862 "parser.cpp" // lalr1.cc:859
     break;
 
   case 105:
-#line 962 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 955 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-							tree<ASTN*>* n = new tree<ASTN*>(new ASTN(L"DMINUSR"));
-							tree<ASTN*>* e = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+        tree<ASTN*>* funcall = new tree<ASTN*>(new ASTN(L"FUNCALL", converter.from_bytes(yystack_[3].value.as< std::string > ())));
+        tree<ASTN*>* list = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-							n->add_child(*e);
-							yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = n;
-						}
-#line 1884 "parser.cpp" // lalr1.cc:859
+        funcall->add_child(*list);
+        yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = funcall;
+      }
+#line 1874 "parser.cpp" // lalr1.cc:859
     break;
 
   case 106:
-#line 973 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 966 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-				tree<ASTN*>* funcall = new tree<ASTN*>(new ASTN(L"FUNCALL", converter.from_bytes(yystack_[3].value.as< std::string > ())));
-				tree<ASTN*>* list = yystack_[1].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-
-				funcall->add_child(*list);
-				yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = funcall;
-			}
-#line 1896 "parser.cpp" // lalr1.cc:859
+          yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"EXPR LIST"));
+        }
+#line 1882 "parser.cpp" // lalr1.cc:859
     break;
 
   case 107:
-#line 984 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 970 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-					yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"EXPR LIST"));
-				}
-#line 1904 "parser.cpp" // lalr1.cc:859
+          tree<ASTN*>* list = new tree<ASTN*>(new ASTN(L"EXPR LIST"));
+          tree<ASTN*>* expr = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+
+          list->add_child(*expr);
+          yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = list;
+        }
+#line 1894 "parser.cpp" // lalr1.cc:859
     break;
 
   case 108:
-#line 988 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 978 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-					tree<ASTN*>* list = new tree<ASTN*>(new ASTN(L"EXPR LIST"));
-					tree<ASTN*>* expr = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+          tree<ASTN*>* list = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+          tree<ASTN*>* expr = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-					list->add_child(*expr);
-					yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = list;
-				}
-#line 1916 "parser.cpp" // lalr1.cc:859
+          list->add_child(*expr);
+          yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = list;
+        }
+#line 1906 "parser.cpp" // lalr1.cc:859
     break;
 
   case 109:
-#line 996 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 989 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-					tree<ASTN*>* list = yystack_[2].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-					tree<ASTN*>* expr = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-
-					list->add_child(*expr);
-					yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = list;
-				}
-#line 1928 "parser.cpp" // lalr1.cc:859
+            yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"OBJECT LIST"));
+          }
+#line 1914 "parser.cpp" // lalr1.cc:859
     break;
 
   case 110:
-#line 1007 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 993 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-						yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = new tree<ASTN*>(new ASTN(L"OBJECT LIST"));
-					}
-#line 1936 "parser.cpp" // lalr1.cc:859
+            tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"OBJECT LIST"));
+            string s = yystack_[2].value.as< std::string > ().substr(1, yystack_[2].value.as< std::string > ().length() - 2);
+            tree<ASTN*>* obj = new tree<ASTN*>(new ASTN(L"ID", converter.from_bytes(s)));
+            tree<ASTN*>* body = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+
+            obj->add_child(*body);
+            t->add_child(*obj);
+            yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
+          }
+#line 1929 "parser.cpp" // lalr1.cc:859
     break;
 
   case 111:
-#line 1011 "freeling/morfo/parser.y" // lalr1.cc:859
+#line 1004 "freeling/morfo/parser.y" // lalr1.cc:859
     {
-						tree<ASTN*>* t = new tree<ASTN*>(new ASTN(L"OBJECT LIST"));
-						tree<ASTN*>* obj = new tree<ASTN*>(new ASTN(L"ID", converter.from_bytes(yystack_[2].value.as< std::string > ())));
-						tree<ASTN*>* body = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            tree<ASTN*>* t = yystack_[4].value.as<  freeling::tree<ATN::ASTN*>*  > ();
+            string s = yystack_[2].value.as< std::string > ().substr(1, yystack_[2].value.as< std::string > ().length() - 2);
+            tree<ASTN*>* obj = new tree<ASTN*>(new ASTN(L"ID", converter.from_bytes(s)));
+            tree<ASTN*>* body = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
 
-						obj->add_child(*body);
-						t->add_child(*obj);
-						yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
-					}
-#line 1950 "parser.cpp" // lalr1.cc:859
-    break;
-
-  case 112:
-#line 1021 "freeling/morfo/parser.y" // lalr1.cc:859
-    {
-						tree<ASTN*>* t = yystack_[4].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-						tree<ASTN*>* obj = new tree<ASTN*>(new ASTN(L"ID", converter.from_bytes(yystack_[2].value.as< std::string > ())));
-						tree<ASTN*>* body = yystack_[0].value.as<  freeling::tree<ATN::ASTN*>*  > ();
-
-						obj->add_child(*body);
-						t->add_child(*obj);
-						yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
-					}
-#line 1964 "parser.cpp" // lalr1.cc:859
+            obj->add_child(*body);
+            t->add_child(*obj);
+            yylhs.value.as<  freeling::tree<ATN::ASTN*>*  > () = t;
+          }
+#line 1944 "parser.cpp" // lalr1.cc:859
     break;
 
 
-#line 1968 "parser.cpp" // lalr1.cc:859
+#line 1948 "parser.cpp" // lalr1.cc:859
             default:
               break;
             }
@@ -2219,39 +2199,39 @@ namespace  ATN  {
   }
 
 
-  const signed char  Parser ::yypact_ninf_ = -103;
+  const signed char  Parser ::yypact_ninf_ = -107;
 
-  const signed char  Parser ::yytable_ninf_ = -48;
+  const signed char  Parser ::yytable_ninf_ = -1;
 
   const short int
    Parser ::yypact_[] =
   {
-    -103,    35,  -103,   -12,    -8,    10,   157,  -103,  -103,    52,
-    -103,    54,    26,  -103,    -2,   161,  -103,    50,  -103,    85,
-    -103,    82,    84,   129,   -16,   138,   161,  -103,  -103,    -2,
-     125,   144,   131,   131,   146,   -16,   146,   138,   147,   152,
-    -103,  -103,   371,  -103,   179,  -103,   188,   225,    25,   174,
-      39,   193,   210,   235,   248,   269,   270,   125,   282,    75,
-      76,   257,   257,   363,  -103,   289,   124,  -103,  -103,  -103,
-    -103,   302,   306,   307,   308,   125,   303,   276,  -103,  -103,
-    -103,  -103,  -103,  -103,  -103,  -103,     5,   299,    75,    75,
-     296,   257,    75,    75,   281,  -103,  -103,  -103,  -103,    41,
-      75,    75,    75,   201,   383,  -103,  -103,  -103,  -103,  -103,
-    -103,   294,    75,    75,   133,  -103,  -103,  -103,  -103,  -103,
-      75,  -103,  -103,  -103,  -103,  -103,  -103,   286,   287,  -103,
-    -103,  -103,   383,     5,   154,   171,   328,  -103,   309,   332,
-     196,   383,   134,   342,     3,   231,    75,  -103,  -103,  -103,
-      75,    75,    75,    75,    75,    75,    75,    75,    75,    75,
-      75,    75,    75,  -103,   113,   105,   383,   341,   316,    -5,
-    -103,   125,   125,    75,    75,  -103,    75,  -103,    75,   317,
-    -103,   220,   348,   320,   397,   410,   178,   178,   178,   178,
-     178,   178,   181,   181,  -103,  -103,  -103,  -103,  -103,   287,
-     339,   327,   321,   340,  -103,   213,    27,   383,   383,   365,
-      75,   222,    -4,   364,   125,   359,   370,   256,  -103,   -27,
-      75,   130,   367,    75,   377,   374,    75,   125,   375,  -103,
-    -103,   382,  -103,   383,  -103,  -103,   238,  -103,    75,   255,
-    -103,    75,   125,   392,   280,   125,   297,  -103,  -103,   393,
-    -103,   125,  -103,  -103
+    -107,    15,  -107,   -30,     2,    70,    12,  -107,  -107,    42,
+    -107,   128,   116,  -107,    -1,   132,  -107,   129,  -107,    63,
+    -107,   133,   179,   187,   123,    98,   132,  -107,  -107,    -1,
+     182,   193,   168,   168,   188,   123,   188,    98,   177,   181,
+    -107,  -107,   157,  -107,    80,  -107,   152,   160,    -3,   202,
+      53,   204,   205,   218,   215,   239,   254,   182,   258,   162,
+     259,   230,   230,   377,  -107,   264,     8,  -107,  -107,  -107,
+    -107,   265,   266,   268,   269,   270,   182,   260,   250,  -107,
+    -107,  -107,  -107,  -107,  -107,  -107,  -107,    19,   272,   162,
+     162,   256,   230,   162,   162,   282,  -107,  -107,  -107,  -107,
+     162,   162,   162,   107,   363,  -107,  -107,  -107,  -107,  -107,
+    -107,   162,  -107,    77,    77,  -107,  -107,  -107,   149,   162,
+     162,  -107,  -107,  -107,  -107,  -107,  -107,  -107,   291,   271,
+    -107,  -107,  -107,   363,    19,   180,   195,   316,  -107,     4,
+     320,   210,   363,   135,   321,    79,  -107,  -107,  -107,   162,
+     162,   162,   162,   162,   162,   162,   162,   162,   162,   162,
+     162,   162,    82,   288,  -107,   322,   334,   363,   317,   290,
+      45,  -107,   182,   182,   162,   162,  -107,   162,  -107,   162,
+     295,  -107,   388,   401,    95,    95,    95,    95,    95,    95,
+     148,   148,  -107,  -107,  -107,  -107,   162,  -107,   271,   313,
+     302,   296,   326,  -107,   237,    88,   363,   363,   354,   143,
+      49,   353,   182,   347,   358,   171,  -107,    37,   162,  -107,
+     355,   162,   356,   359,   162,   182,   362,  -107,  -107,    33,
+     364,  -107,   363,  -107,   252,  -107,   162,   267,  -107,   162,
+     182,   366,   294,   182,   309,  -107,  -107,   367,  -107,   182,
+    -107,  -107
   };
 
   const unsigned char
@@ -2262,149 +2242,147 @@ namespace  ATN  {
       10,     0,     0,     0,     0,     0,     0,    24,    12,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
       25,    11,    32,     8,     0,    22,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,    62,
-      45,     0,     0,     0,    33,     0,     0,    36,    37,    38,
-      39,     0,     0,     0,     0,     0,     0,     0,    20,    21,
-      14,    15,    16,    17,    18,    19,     0,    64,     0,     0,
-       0,    56,     0,   107,   110,    73,    74,    75,    76,    77,
-       0,     0,     0,     0,    63,    69,    70,    71,    72,    87,
-      82,     0,   107,     0,    45,   102,   104,    31,    34,    35,
-       0,   103,   105,    41,    43,    42,    40,     0,    28,    23,
-      68,    65,    67,     0,     0,     0,     0,    57,     0,     0,
-       0,   108,     0,     0,     0,     0,     0,    86,    85,    84,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,    63,
+      46,     0,     0,     0,    33,     0,     0,    36,    37,    38,
+      39,     0,     0,     0,     0,     0,     0,     0,     0,    20,
+      21,    14,    15,    16,    17,    18,    19,     0,    65,     0,
+       0,     0,    57,     0,   106,   109,    74,    75,    76,    77,
+       0,     0,     0,    78,    64,    70,    71,    72,    73,    86,
+      81,   106,    46,   101,   103,    31,    34,    35,     0,     0,
+       0,   102,   104,    41,    44,    43,    42,    40,     0,    28,
+      23,    69,    66,    68,     0,     0,     0,     0,    58,     0,
+       0,     0,   107,     0,     0,     0,    85,    84,    83,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,    46,     0,     0,    44,     0,     0,     0,
-      66,     0,     0,     0,     0,    83,     0,    81,     0,     0,
-      80,    78,     0,     0,   100,    99,    93,    94,    95,    96,
-      97,    98,    88,    89,    90,    91,    92,   106,    47,    28,
-       0,     0,     0,    49,    54,     0,     0,   109,   111,     0,
-     107,    79,     0,     0,     0,     0,     0,    52,    61,    58,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,    48,
-      59,     0,    60,   112,   101,    26,     0,    27,     0,     0,
-      53,     0,     0,     0,     0,     0,     0,    55,    29,     0,
-      50,     0,    30,    51
+       0,     0,     0,     0,    47,     0,     0,    45,     0,     0,
+       0,    67,     0,     0,     0,     0,    82,     0,    80,     0,
+       0,    79,    99,    98,    92,    93,    94,    95,    96,    97,
+      87,    88,    89,    90,    91,   105,   106,    48,    28,     0,
+       0,     0,    50,    55,     0,     0,   108,   110,     0,     0,
+       0,     0,     0,     0,     0,    53,    62,    59,     0,   100,
+       0,     0,     0,     0,     0,     0,     0,    49,    60,     0,
+       0,    61,   111,    26,     0,    27,     0,     0,    54,     0,
+       0,     0,     0,     0,     0,    56,    29,     0,    51,     0,
+      30,    52
   };
 
   const short int
    Parser ::yypgoto_[] =
   {
-    -103,  -103,  -103,  -103,  -103,   373,  -103,   103,   106,   366,
-     148,   369,   204,   -57,  -103,   337,   -88,   -41,  -103,  -103,
-    -103,  -103,  -103,  -103,  -103,  -103,  -103,  -103,  -103,   272,
-     -55,  -103,  -103,  -103,  -103,   -40,   -36,  -102,  -103
+    -107,  -107,  -107,  -107,  -107,   345,  -107,   -13,    83,   352,
+      89,    26,   194,   -57,  -107,   323,   -89,   -41,  -107,  -107,
+    -107,  -107,  -107,  -107,  -107,  -107,  -107,  -107,  -107,   257,
+     -55,  -107,  -107,  -107,   -33,   -40,   -14,  -106,  -107
   };
 
   const short int
    Parser ::yydefgoto_[] =
   {
       -1,     1,     6,     7,    19,    20,     8,    24,    25,    46,
-      26,    27,   169,    43,    63,    64,    65,   103,    67,   217,
-     229,    68,    69,   139,   231,    70,    71,    72,    87,   131,
-     141,   105,   106,   107,   108,   109,   110,   142,   144
+      26,    27,   170,    43,    63,    64,    65,   103,    67,   215,
+     227,    68,    69,   140,   230,    70,    71,    72,    88,   132,
+     142,   105,   106,   107,   108,   109,   110,   143,   145
   };
 
-  const short int
+  const unsigned char
    Parser ::yytable_[] =
   {
-      90,    66,    73,   137,   104,    17,    74,   179,   201,   222,
-     164,   114,    21,    92,    23,    93,   180,    94,   127,   130,
-     115,   116,    66,    73,    61,    62,     9,    74,   202,   202,
-      10,   132,   219,   134,   135,     2,    18,   140,    80,    95,
-      96,    97,    98,    99,   145,   147,   148,   149,    11,   112,
-     138,   146,    82,    21,   100,   101,    61,    62,   165,     3,
-      14,     4,     5,   102,    16,   166,    15,    21,   150,   151,
-     152,   153,   154,   155,   156,   157,   158,   159,   132,   111,
-     160,   161,   162,    92,   112,    93,   113,    94,    28,    29,
-      32,   183,   -45,   -45,    30,   184,   185,   186,   187,   188,
-     189,   190,   191,   192,   193,   194,   195,   196,   221,    95,
-      96,    97,    98,    99,   203,   204,   198,   176,   205,   206,
-      31,   207,   197,   208,   100,   101,    61,    62,    36,    38,
-      34,   230,    39,   102,   176,    33,   111,    42,   176,   234,
-      51,    49,    53,   113,    52,   177,   150,   151,   152,   153,
-     154,   155,   156,   157,   158,   159,    44,   224,   160,   161,
-     162,    12,    13,   171,   120,   233,    21,    22,   236,    45,
-     240,   239,    35,    37,    21,   121,   122,    23,    66,   232,
-     172,    22,    48,   244,    50,   247,   246,    81,   250,    21,
-      22,    23,    77,    78,   253,   150,   151,   152,   153,   154,
-     155,   156,   157,   158,   159,   175,    83,   160,   161,   162,
-      75,    76,   150,   151,   152,   153,   154,   155,   156,   157,
-     158,   159,   218,    84,   160,   161,   162,   158,   159,    77,
-      79,   160,   161,   162,   160,   161,   162,   150,   151,   152,
-     153,   154,   155,   156,   157,   158,   159,   243,    85,   160,
-     161,   162,   121,   122,   150,   151,   152,   153,   154,   155,
-     156,   157,   158,   159,   245,    86,   160,   161,   162,   181,
-     182,   -46,   -46,   -47,   -47,   227,   228,    88,    89,   150,
-     151,   152,   153,   154,   155,   156,   157,   158,   159,   249,
-      91,   160,   161,   162,   119,   114,   150,   151,   152,   153,
-     154,   155,   156,   157,   158,   159,   251,   123,   160,   161,
-     162,   124,   125,   126,   129,   128,   133,   136,   167,   143,
-     168,   150,   151,   152,   153,   154,   155,   156,   157,   158,
-     159,   211,   163,   160,   161,   162,   173,   174,   150,   151,
-     152,   153,   154,   155,   156,   157,   158,   159,   178,   120,
-     160,   161,   162,   199,   200,   209,   210,   213,   214,   215,
-     216,   150,   151,   152,   153,   154,   155,   156,   157,   158,
-     159,   220,   223,   160,   161,   162,   117,   225,   226,    54,
-     235,    55,   238,   241,    56,    57,    58,    54,    59,    55,
-     237,   242,    56,    57,    58,    40,    59,   248,   252,    47,
-     118,    60,    41,   212,    40,   170,    40,     0,     0,    60,
-       0,     0,     0,     0,    61,    62,     0,    40,     0,    40,
-       0,     0,    61,    62,   150,   151,   152,   153,   154,   155,
-     156,   157,   158,   159,     0,     0,   160,   161,   162,   151,
-     152,   153,   154,   155,   156,   157,   158,   159,     0,     0,
-     160,   161,   162,   152,   153,   154,   155,   156,   157,   158,
-     159,     0,     0,   160,   161,   162
+      91,    66,    74,   138,   104,   162,    17,   163,     9,    73,
+      81,   118,    36,    38,   119,     2,    12,    13,   119,   128,
+     113,   114,    66,    74,    51,    21,    53,    93,    75,    94,
+      73,    95,   133,   131,   135,   136,   163,    18,   141,     3,
+      10,     4,     5,   119,   120,   146,   147,   148,   120,    75,
+      14,   139,    40,    96,    97,    98,    99,    60,   200,   121,
+     122,    40,   220,    40,   166,   167,    83,    29,   100,   101,
+      61,    62,    30,   120,    40,   112,    40,   102,   201,   133,
+     163,    21,   201,   180,   121,   122,   177,   119,    61,    62,
+     209,   195,   181,   217,   182,   183,   184,   185,   186,   187,
+     188,   189,   190,   191,   192,   193,   194,    34,    11,    39,
+     118,    76,    77,    35,    37,   202,   203,   119,    49,   204,
+     205,    52,   206,    48,   207,    50,    21,    22,   228,   149,
+     150,   151,   152,   153,   154,   155,   156,   157,   158,   177,
+      15,   159,   160,   161,   157,   158,   178,   177,   159,   160,
+     161,    21,   219,    23,    16,   222,    78,    79,   121,   122,
+      21,    22,    23,   232,    78,    80,   234,    28,   238,   237,
+      93,    31,    94,    54,    95,    55,   229,   231,    56,    57,
+      58,   242,    59,   245,   244,    32,   248,   164,   165,   172,
+     225,   226,   251,    33,    42,    60,    96,    97,    98,    99,
+      60,   159,   160,   161,   173,    44,    45,    23,    61,    62,
+      22,   100,   101,    61,    62,    82,    21,    84,    85,   176,
+     102,   149,   150,   151,   152,   153,   154,   155,   156,   157,
+     158,    86,    87,   159,   160,   161,   149,   150,   151,   152,
+     153,   154,   155,   156,   157,   158,   216,    89,   159,   160,
+     161,   149,   150,   151,   152,   153,   154,   155,   156,   157,
+     158,   241,    90,   159,   160,   161,    92,   111,   112,   117,
+     123,   124,   129,   125,   126,   127,   243,   137,   149,   150,
+     151,   152,   153,   154,   155,   156,   157,   158,   130,   134,
+     159,   160,   161,   149,   150,   151,   152,   153,   154,   155,
+     156,   157,   158,   247,   169,   159,   160,   161,   149,   150,
+     151,   152,   153,   154,   155,   156,   157,   158,   249,   144,
+     159,   160,   161,   168,   174,   175,   164,   179,   199,   198,
+     196,   211,   208,   212,   213,   149,   150,   151,   152,   153,
+     154,   155,   156,   157,   158,   197,   214,   159,   160,   161,
+     149,   150,   151,   152,   153,   154,   155,   156,   157,   158,
+     218,   221,   159,   160,   161,   223,   224,   236,   233,   235,
+     239,   246,   250,   240,    41,   149,   150,   151,   152,   153,
+     154,   155,   156,   157,   158,    47,   116,   159,   160,   161,
+     115,   171,   210,    54,     0,    55,     0,     0,    56,    57,
+      58,     0,    59,     0,   149,   150,   151,   152,   153,   154,
+     155,   156,   157,   158,     0,    60,   159,   160,   161,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,    61,    62,
+     150,   151,   152,   153,   154,   155,   156,   157,   158,     0,
+       0,   159,   160,   161,   151,   152,   153,   154,   155,   156,
+     157,   158,     0,     0,   159,   160,   161
   };
 
   const short int
    Parser ::yycheck_[] =
   {
-      57,    42,    42,    91,    59,     7,    42,     4,    13,    13,
-     112,    38,    28,     8,    30,    10,    13,    12,    75,    14,
-      61,    62,    63,    63,    51,    52,    38,    63,    33,    33,
-      38,    86,     5,    88,    89,     0,    38,    92,    13,    34,
-      35,    36,    37,    38,     3,   100,   101,   102,    38,     8,
-      91,    10,    13,    28,    49,    50,    51,    52,   113,    24,
-       8,    26,    27,    58,    38,   120,    12,    28,    41,    42,
-      43,    44,    45,    46,    47,    48,    49,    50,   133,     3,
-      53,    54,    55,     8,     8,    10,    10,    12,    38,     4,
-       6,   146,    51,    52,     9,   150,   151,   152,   153,   154,
-     155,   156,   157,   158,   159,   160,   161,   162,   210,    34,
-      35,    36,    37,    38,   171,   172,    11,     4,   173,   174,
-      38,   176,     9,   178,    49,    50,    51,    52,    25,    26,
-      24,   219,    26,    58,     4,     6,     3,    12,     4,     9,
-      37,    35,    39,    10,    38,    11,    41,    42,    43,    44,
-      45,    46,    47,    48,    49,    50,    12,   214,    53,    54,
-      55,     4,     5,     9,    40,   220,    28,    29,   223,    38,
-     227,   226,    24,    25,    28,    51,    52,    30,   219,   219,
-       9,    29,    34,   238,    36,   242,   241,    13,   245,    28,
-      29,    30,     4,     5,   251,    41,    42,    43,    44,    45,
-      46,    47,    48,    49,    50,     9,    13,    53,    54,    55,
-      31,    32,    41,    42,    43,    44,    45,    46,    47,    48,
-      49,    50,     9,    13,    53,    54,    55,    49,    50,     4,
-       5,    53,    54,    55,    53,    54,    55,    41,    42,    43,
-      44,    45,    46,    47,    48,    49,    50,     9,    13,    53,
-      54,    55,    51,    52,    41,    42,    43,    44,    45,    46,
-      47,    48,    49,    50,     9,    17,    53,    54,    55,    38,
-      39,    51,    52,    51,    52,    19,    20,     8,     8,    41,
-      42,    43,    44,    45,    46,    47,    48,    49,    50,     9,
-       8,    53,    54,    55,     5,    38,    41,    42,    43,    44,
-      45,    46,    47,    48,    49,    50,     9,     5,    53,    54,
-      55,     5,     5,     5,    38,    12,    17,    21,    32,    38,
-      33,    41,    42,    43,    44,    45,    46,    47,    48,    49,
-      50,    11,    38,    53,    54,    55,     8,     5,    41,    42,
-      43,    44,    45,    46,    47,    48,    49,    50,     6,    40,
-      53,    54,    55,    12,    38,    38,     8,    18,    31,    38,
-      20,    41,    42,    43,    44,    45,    46,    47,    48,    49,
-      50,     6,     8,    53,    54,    55,    13,    18,     8,    16,
-      13,    18,     8,     8,    21,    22,    23,    16,    25,    18,
-      13,     9,    21,    22,    23,    26,    25,     5,     5,    33,
-      63,    38,    29,   199,    35,   133,    37,    -1,    -1,    38,
-      -1,    -1,    -1,    -1,    51,    52,    -1,    48,    -1,    50,
-      -1,    -1,    51,    52,    41,    42,    43,    44,    45,    46,
-      47,    48,    49,    50,    -1,    -1,    53,    54,    55,    42,
-      43,    44,    45,    46,    47,    48,    49,    50,    -1,    -1,
-      53,    54,    55,    43,    44,    45,    46,    47,    48,    49,
-      50,    -1,    -1,    53,    54,    55
+      57,    42,    42,    92,    59,   111,     7,     3,    38,    42,
+      13,     3,    25,    26,    10,     0,     4,     5,    10,    76,
+      61,    62,    63,    63,    37,    28,    39,     8,    42,    10,
+      63,    12,    87,    14,    89,    90,     3,    38,    93,    24,
+      38,    26,    27,    10,    40,   100,   101,   102,    40,    63,
+       8,    92,    26,    34,    35,    36,    37,    38,    13,    51,
+      52,    35,    13,    37,   119,   120,    13,     4,    49,    50,
+      51,    52,     9,    40,    48,    38,    50,    58,    33,   134,
+       3,    28,    33,     4,    51,    52,     4,    10,    51,    52,
+     196,     9,    13,     5,   149,   150,   151,   152,   153,   154,
+     155,   156,   157,   158,   159,   160,   161,    24,    38,    26,
+       3,    31,    32,    24,    25,   172,   173,    10,    35,   174,
+     175,    38,   177,    34,   179,    36,    28,    29,   217,    41,
+      42,    43,    44,    45,    46,    47,    48,    49,    50,     4,
+      12,    53,    54,    55,    49,    50,    11,     4,    53,    54,
+      55,    28,     9,    30,    38,   212,     4,     5,    51,    52,
+      28,    29,    30,   218,     4,     5,   221,    38,   225,   224,
+       8,    38,    10,    16,    12,    18,   217,   217,    21,    22,
+      23,   236,    25,   240,   239,     6,   243,    38,    39,     9,
+      19,    20,   249,     6,    12,    38,    34,    35,    36,    37,
+      38,    53,    54,    55,     9,    12,    38,    30,    51,    52,
+      29,    49,    50,    51,    52,    13,    28,    13,    13,     9,
+      58,    41,    42,    43,    44,    45,    46,    47,    48,    49,
+      50,    13,    17,    53,    54,    55,    41,    42,    43,    44,
+      45,    46,    47,    48,    49,    50,     9,     8,    53,    54,
+      55,    41,    42,    43,    44,    45,    46,    47,    48,    49,
+      50,     9,     8,    53,    54,    55,     8,     8,    38,     5,
+       5,     5,    12,     5,     5,     5,     9,    21,    41,    42,
+      43,    44,    45,    46,    47,    48,    49,    50,    38,    17,
+      53,    54,    55,    41,    42,    43,    44,    45,    46,    47,
+      48,    49,    50,     9,    33,    53,    54,    55,    41,    42,
+      43,    44,    45,    46,    47,    48,    49,    50,     9,    37,
+      53,    54,    55,    32,     8,     5,    38,     6,    38,    12,
+       8,    18,    37,    31,    38,    41,    42,    43,    44,    45,
+      46,    47,    48,    49,    50,    11,    20,    53,    54,    55,
+      41,    42,    43,    44,    45,    46,    47,    48,    49,    50,
+       6,     8,    53,    54,    55,    18,     8,     8,    13,    13,
+       8,     5,     5,     9,    29,    41,    42,    43,    44,    45,
+      46,    47,    48,    49,    50,    33,    63,    53,    54,    55,
+      13,   134,   198,    16,    -1,    18,    -1,    -1,    21,    22,
+      23,    -1,    25,    -1,    41,    42,    43,    44,    45,    46,
+      47,    48,    49,    50,    -1,    38,    53,    54,    55,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    51,    52,
+      42,    43,    44,    45,    46,    47,    48,    49,    50,    -1,
+      -1,    53,    54,    55,    43,    44,    45,    46,    47,    48,
+      49,    50,    -1,    -1,    53,    54,    55
   };
 
   const unsigned char
@@ -2417,25 +2395,25 @@ namespace  ATN  {
       71,    65,    12,    73,    12,    38,    69,    69,    70,    68,
       70,    67,    68,    67,    16,    18,    21,    22,    23,    25,
       38,    51,    52,    74,    75,    76,    77,    78,    81,    82,
-      85,    86,    87,    95,    96,    31,    32,     4,     5,     5,
-      13,    13,    13,    13,    13,    13,    17,    88,     8,     8,
-      73,     8,     8,    10,    12,    34,    35,    36,    37,    38,
+      85,    86,    87,    94,    95,    96,    31,    32,     4,     5,
+       5,    13,    13,    13,    13,    13,    13,    17,    88,     8,
+       8,    73,     8,     8,    10,    12,    34,    35,    36,    37,
       49,    50,    58,    77,    90,    91,    92,    93,    94,    95,
-      96,     3,     8,    10,    38,    77,    77,    13,    75,     5,
-      40,    51,    52,     5,     5,     5,     5,    73,    12,    38,
-      14,    89,    90,    17,    90,    90,    21,    76,    77,    83,
-      90,    90,    97,    38,    98,     3,    10,    90,    90,    90,
-      41,    42,    43,    44,    45,    46,    47,    48,    49,    50,
-      53,    54,    55,    38,    97,    90,    90,    32,    33,    72,
-      89,     9,     9,     8,     5,     9,     4,    11,     6,     4,
-      13,    38,    39,    90,    90,    90,    90,    90,    90,    90,
-      90,    90,    90,    90,    90,    90,    90,     9,    11,    12,
-      38,    13,    33,    73,    73,    90,    90,    90,    90,    38,
-       8,    11,    72,    18,    31,    38,    20,    79,     9,     5,
-       6,    97,    13,     8,    73,    18,     8,    19,    20,    80,
-      76,    84,    95,    90,     9,    13,    90,    13,     8,    90,
-      73,     8,     9,     9,    90,     9,    90,    73,     5,     9,
-      73,     9,     5,    73
+      96,     8,    38,    77,    77,    13,    75,     5,     3,    10,
+      40,    51,    52,     5,     5,     5,     5,     5,    73,    12,
+      38,    14,    89,    90,    17,    90,    90,    21,    76,    77,
+      83,    90,    90,    97,    37,    98,    90,    90,    90,    41,
+      42,    43,    44,    45,    46,    47,    48,    49,    50,    53,
+      54,    55,    97,     3,    38,    39,    90,    90,    32,    33,
+      72,    89,     9,     9,     8,     5,     9,     4,    11,     6,
+       4,    13,    90,    90,    90,    90,    90,    90,    90,    90,
+      90,    90,    90,    90,    90,     9,     8,    11,    12,    38,
+      13,    33,    73,    73,    90,    90,    90,    90,    37,    97,
+      72,    18,    31,    38,    20,    79,     9,     5,     6,     9,
+      13,     8,    73,    18,     8,    19,    20,    80,    76,    77,
+      84,    95,    90,    13,    90,    13,     8,    90,    73,     8,
+       9,     9,    90,     9,    90,    73,     5,     9,    73,     9,
+       5,    73
   };
 
   const unsigned char
@@ -2445,14 +2423,14 @@ namespace  ATN  {
       64,    64,    65,    65,    66,    66,    66,    66,    66,    66,
       67,    68,    69,    69,    70,    70,    71,    71,    72,    72,
       72,    73,    74,    74,    74,    75,    75,    75,    75,    75,
-      75,    75,    75,    75,    76,    77,    77,    77,    78,    79,
-      79,    79,    80,    80,    81,    82,    83,    83,    84,    84,
-      84,    85,    86,    86,    87,    88,    88,    89,    89,    90,
-      90,    90,    90,    91,    91,    91,    91,    91,    91,    91,
-      91,    91,    91,    91,    91,    91,    91,    91,    92,    92,
-      92,    92,    92,    93,    93,    93,    93,    93,    93,    93,
-      93,    94,    95,    95,    95,    95,    96,    97,    97,    97,
-      98,    98,    98
+      75,    75,    75,    75,    75,    76,    77,    77,    77,    78,
+      79,    79,    79,    80,    80,    81,    82,    83,    83,    84,
+      84,    84,    85,    86,    86,    87,    88,    88,    89,    89,
+      90,    90,    90,    90,    91,    91,    91,    91,    91,    91,
+      91,    91,    91,    91,    91,    91,    91,    92,    92,    92,
+      92,    92,    93,    93,    93,    93,    93,    93,    93,    93,
+      94,    95,    95,    95,    95,    96,    97,    97,    97,    98,
+      98,    98
   };
 
   const unsigned char
@@ -2462,14 +2440,14 @@ namespace  ATN  {
        1,     3,     2,     1,     7,     7,     7,     7,     7,     7,
        4,     4,     1,     3,     1,     2,    10,    10,     0,     7,
        8,     3,     0,     1,     2,     2,     1,     1,     1,     1,
-       2,     2,     2,     2,     3,     1,     3,     4,     7,     0,
-       5,     6,     0,     2,     5,     9,     0,     1,     0,     1,
-       1,     6,     1,     2,     2,     2,     3,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     3,     4,
-       3,     3,     1,     3,     2,     2,     2,     1,     3,     3,
+       2,     2,     2,     2,     2,     3,     1,     3,     4,     7,
+       0,     5,     6,     0,     2,     5,     9,     0,     1,     0,
+       1,     1,     6,     1,     2,     2,     2,     3,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     3,
+       3,     1,     3,     2,     2,     2,     1,     3,     3,     3,
        3,     3,     3,     3,     3,     3,     3,     3,     3,     3,
-       3,     6,     2,     2,     2,     2,     4,     0,     1,     3,
-       0,     3,     5
+       6,     2,     2,     2,     2,     4,     0,     1,     3,     0,
+       3,     5
   };
 
 
@@ -2508,14 +2486,14 @@ namespace  ATN  {
      183,   191,   203,   207,   214,   227,   240,   253,   266,   279,
      295,   310,   325,   333,   344,   351,   361,   375,   393,   396,
      408,   423,   431,   434,   442,   454,   456,   458,   460,   462,
-     464,   466,   468,   470,   475,   488,   492,   502,   515,   533,
-     536,   546,   560,   563,   574,   587,   605,   606,   612,   613,
-     615,   620,   632,   636,   647,   658,   666,   676,   678,   683,
-     684,   685,   686,   690,   695,   699,   703,   708,   712,   722,
-     732,   740,   748,   752,   756,   764,   772,   780,   788,   798,
-     808,   818,   828,   841,   851,   861,   871,   881,   891,   901,
-     911,   924,   937,   945,   953,   961,   972,   984,   987,   995,
-    1007,  1010,  1020
+     464,   466,   468,   470,   472,   477,   490,   494,   504,   517,
+     535,   538,   548,   562,   565,   576,   589,   607,   608,   614,
+     615,   617,   622,   634,   638,   649,   660,   668,   678,   680,
+     685,   686,   687,   688,   692,   697,   701,   705,   710,   714,
+     722,   730,   734,   738,   746,   754,   762,   770,   780,   790,
+     800,   810,   823,   833,   843,   853,   863,   873,   883,   893,
+     906,   919,   927,   935,   943,   954,   966,   969,   977,   989,
+     992,  1003
   };
 
   // Print the state stack on the debug stream.
@@ -2550,8 +2528,8 @@ namespace  ATN  {
 
 #line 9 "freeling/morfo/parser.y" // lalr1.cc:1167
 } //  ATN 
-#line 2554 "parser.cpp" // lalr1.cc:1167
-#line 1033 "freeling/morfo/parser.y" // lalr1.cc:1168
+#line 2532 "parser.cpp" // lalr1.cc:1167
+#line 1017 "freeling/morfo/parser.y" // lalr1.cc:1168
 
 
 

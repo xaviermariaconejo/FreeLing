@@ -40,7 +40,7 @@
 #ifndef YY_YY_PARSER_HPP_INCLUDED
 # define YY_YY_PARSER_HPP_INCLUDED
 // //                    "%code requires" blocks.
-#line 11 "freeling/morfo/parser.y" // lalr1.cc:392
+#line 11 "parser.y" // lalr1.cc:392
 
     #include <iostream>
     #include <string>
@@ -876,7 +876,7 @@ namespace  ATN  {
   // YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
   // positive, shift that token.  If negative, reduce the rule whose
   // number is the opposite.  If YYTABLE_NINF, syntax error.
-  static const short int yytable_[];
+  static const unsigned char yytable_[];
 
   static const short int yycheck_[];
 
@@ -998,7 +998,7 @@ namespace  ATN  {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 465,     ///< Last index in yytable_.
+      yylast_ = 456,     ///< Last index in yytable_.
       yynnts_ = 39,  ///< Number of nonterminal symbols.
       yyfinal_ = 2, ///< Termination state number.
       yyterror_ = 1,

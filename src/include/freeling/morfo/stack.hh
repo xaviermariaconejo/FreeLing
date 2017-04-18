@@ -31,7 +31,7 @@
 // version 2.2 of Bison.
 
 /**
- ** \file stack.hh
+ ** \file freeling/morfo/stack.hh
  ** Define the  ATN ::stack class.
  */
 
@@ -40,9 +40,9 @@
 
 # include <vector>
 
-#line 9 "freeling/morfo/parser.y" // stack.hh:151
+#line 9 "freeling/morfo/parser.y" // freeling/morfo/stack.hh:151
 namespace  ATN  {
-#line 46 "freeling/morfo/stack.hh" // stack.hh:151
+#line 46 "freeling/morfo/stack.hh" // freeling/morfo/stack.hh:151
   template <class T, class S = std::vector<T> >
   class stack
   {
@@ -150,8 +150,8 @@ namespace  ATN  {
     unsigned int range_;
   };
 
-#line 9 "freeling/morfo/parser.y" // stack.hh:151
+#line 9 "freeling/morfo/parser.y" // freeling/morfo/stack.hh:151
 } //  ATN 
-#line 156 "freeling/morfo/stack.hh" // stack.hh:151
+#line 156 "freeling/morfo/stack.hh" // freeling/morfo/stack.hh:151
 
 #endif // !YY_YY_STACK_HH_INCLUDED

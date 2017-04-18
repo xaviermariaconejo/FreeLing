@@ -1,10 +1,10 @@
 %{
 	#include <iostream>
 	#include <cstdlib>
-	#include "scanner.h"
-	#include "atn.h"
-	#include "parser.hpp"
-	#include "location.hh"
+	#include "freeling/morfo/scanner.h"
+	#include "freeling/morfo/atn.h"
+	#include "freeling/morfo/parser.hpp"
+	#include "freeling/morfo/location.hh"
 
 	using namespace std;
 
@@ -30,7 +30,7 @@ dig				[0-9]
 alpha			[a-zA-Z_]
 alphanum		[a-zA-Z0-9_]
 string			(\"(\\.|[^\\"])*\"|\'(\\.|[^\\'])*\')
-local_function 	"add"|"remove"|"indexOf"|"size"|"substring"|"lema"
+local_function 	"push_back"|"add"|"remove"|"indexOf"|"contain"|"size"|"substring"|"toString"|"toInt"|"toDouble"
 
 
 %%
@@ -92,12 +92,14 @@ local_function 	"add"|"remove"|"indexOf"|"size"|"substring"|"lema"
 "or"|"OR"|"||"		{ return ATN::Parser::make_OR(ATN::location()); }
 
 
+{local_function}	{ return ATN::Parser::make_LOCALFUNCTION(strdup(yytext), ATN::location()); }
+
+
 {bool} 						{ return ATN::Parser::make_BOOL(strdup(yytext), ATN::location()); }
 {dig}+ 						{ return ATN::Parser::make_INT(atoi(yytext), ATN::location()); }
 {dig}*\.{dig}* 				{ return ATN::Parser::make_DOUBLE(atof(yytext), ATN::location()); }
 {string} 					{ return ATN::Parser::make_STRING(strdup(yytext), ATN::location()); }
 {alpha}+{alphanum}*|"$"|"@"	{ return ATN::Parser::make_ID(strdup(yytext), ATN::location()); }
-{local_function} 			{ return ATN::Parser::make_LOCALFUNCTION(strdup(yytext), ATN::location()); }
 
 
 \n 		{ m_driver.increaseLocationRow(); }
