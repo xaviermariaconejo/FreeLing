@@ -30,12 +30,14 @@ Kernel configured for up to 4 processors.
 Processor type: x86_64h (Intel x86-64h Haswell)
 Processors active: 0 1 2 3
 Primary memory available: 8.00 gigabytes
-Default processor set: 210 tasks, 1174 threads, 4 processors
-Load average: 3.07, Mach factor: 1.10
+Default processor set: 291 tasks, 1319 threads, 4 processors
+Load average: 1.91, Mach factor: 2.08
 /bin/machine           = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
 
+PATH: /usr/local/opt/icu4c/sbin
+PATH: /usr/local/opt/icu4c/bin
 PATH: /Users/xavier/Library/Python/2.7/bin
 PATH: /usr/local/bin
 PATH: /usr/local/sbin
@@ -539,80 +541,83 @@ configure:16253: checking for boost/regex.hpp
 configure:16253: result: yes
 configure:16271: checking boost/regex/icu.hpp usability
 configure:16271: g++ -c -std=gnu++0x -Wall -Wno-sign-compare -fPIC  conftest.cpp >&5
-In file included from conftest.cpp:58:
-/usr/local/include/boost/regex/icu.hpp:22:10: fatal error: 'unicode/utypes.h' file not found
-#include <unicode/utypes.h>
-         ^
-1 error generated.
-configure:16271: $? = 1
-configure: failed program was:
-| /* confdefs.h */
-| #define PACKAGE_NAME "FreeLing"
-| #define PACKAGE_TARNAME "freeling"
-| #define PACKAGE_VERSION "4.0"
-| #define PACKAGE_STRING "FreeLing 4.0"
-| #define PACKAGE_BUGREPORT ""
-| #define PACKAGE_URL ""
-| #define PACKAGE "freeling"
-| #define VERSION "4.0"
-| #define MACOSX 1
-| #define STDC_HEADERS 1
-| #define HAVE_SYS_TYPES_H 1
-| #define HAVE_SYS_STAT_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_STRING_H 1
-| #define HAVE_MEMORY_H 1
-| #define HAVE_STRINGS_H 1
-| #define HAVE_INTTYPES_H 1
-| #define HAVE_STDINT_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_DLFCN_H 1
-| #define LT_OBJDIR ".libs/"
-| #define HAVE_BOOST_REGEX_HPP 1
-| /* end confdefs.h.  */
-| #include <stdio.h>
-| #ifdef HAVE_SYS_TYPES_H
-| # include <sys/types.h>
-| #endif
-| #ifdef HAVE_SYS_STAT_H
-| # include <sys/stat.h>
-| #endif
-| #ifdef STDC_HEADERS
-| # include <stdlib.h>
-| # include <stddef.h>
-| #else
-| # ifdef HAVE_STDLIB_H
-| #  include <stdlib.h>
-| # endif
-| #endif
-| #ifdef HAVE_STRING_H
-| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
-| #  include <memory.h>
-| # endif
-| # include <string.h>
-| #endif
-| #ifdef HAVE_STRINGS_H
-| # include <strings.h>
-| #endif
-| #ifdef HAVE_INTTYPES_H
-| # include <inttypes.h>
-| #endif
-| #ifdef HAVE_STDINT_H
-| # include <stdint.h>
-| #endif
-| #ifdef HAVE_UNISTD_H
-| # include <unistd.h>
-| #endif
-| #include <boost/regex/icu.hpp>
-configure:16271: result: no
+configure:16271: $? = 0
+configure:16271: result: yes
 configure:16271: checking boost/regex/icu.hpp presence
 configure:16271: g++ -E  conftest.cpp
-In file included from conftest.cpp:25:
-/usr/local/include/boost/regex/icu.hpp:22:10: fatal error: 'unicode/utypes.h' file not found
-#include <unicode/utypes.h>
-         ^
-1 error generated.
-configure:16271: $? = 1
+configure:16271: $? = 0
+configure:16271: result: yes
+configure:16271: checking for boost/regex/icu.hpp
+configure:16271: result: yes
+configure:16291: checking boost/program_options.hpp usability
+configure:16291: g++ -c -std=gnu++0x -Wall -Wno-sign-compare -fPIC  conftest.cpp >&5
+configure:16291: $? = 0
+configure:16291: result: yes
+configure:16291: checking boost/program_options.hpp presence
+configure:16291: g++ -E  conftest.cpp
+configure:16291: $? = 0
+configure:16291: result: yes
+configure:16291: checking for boost/program_options.hpp
+configure:16291: result: yes
+configure:16309: checking boost/thread.hpp usability
+configure:16309: g++ -c -std=gnu++0x -Wall -Wno-sign-compare -fPIC  conftest.cpp >&5
+configure:16309: $? = 0
+configure:16309: result: yes
+configure:16309: checking boost/thread.hpp presence
+configure:16309: g++ -E  conftest.cpp
+configure:16309: $? = 0
+configure:16309: result: yes
+configure:16309: checking for boost/thread.hpp
+configure:16309: result: yes
+configure:16327: checking boost/thread/mutex.hpp usability
+configure:16327: g++ -c -std=gnu++0x -Wall -Wno-sign-compare -fPIC  conftest.cpp >&5
+configure:16327: $? = 0
+configure:16327: result: yes
+configure:16327: checking boost/thread/mutex.hpp presence
+configure:16327: g++ -E  conftest.cpp
+configure:16327: $? = 0
+configure:16327: result: yes
+configure:16327: checking for boost/thread/mutex.hpp
+configure:16327: result: yes
+configure:16345: checking zlib.h usability
+configure:16345: g++ -c -std=gnu++0x -Wall -Wno-sign-compare -fPIC  conftest.cpp >&5
+configure:16345: $? = 0
+configure:16345: result: yes
+configure:16345: checking zlib.h presence
+configure:16345: g++ -E  conftest.cpp
+configure:16345: $? = 0
+configure:16345: result: yes
+configure:16345: checking for zlib.h
+configure:16345: result: yes
+configure:16379: g++ -o conftest -std=gnu++0x -Wall -Wno-sign-compare -fPIC   conftest.cpp  >&5
+ld: warning: directory not found for option '-Lusr/local/Cellar/boost/1.63.0'
+configure:16379: $? = 0
+configure:16403: checking for main in -licuuc
+configure:16422: g++ -o conftest -std=gnu++0x -Wall -Wno-sign-compare -fPIC   conftest.cpp -licuuc   >&5
+conftest.cpp:34:1: warning: all paths through this function will call itself [-Winfinite-recursion]
+{
+^
+1 warning generated.
+ld: warning: directory not found for option '-Lusr/local/Cellar/boost/1.63.0'
+configure:16422: $? = 0
+configure:16431: result: yes
+configure:16445: checking for main in -lboost_regex
+configure:16464: g++ -o conftest -std=gnu++0x -Wall -Wno-sign-compare -fPIC   conftest.cpp -lboost_regex   >&5
+conftest.cpp:34:1: warning: all paths through this function will call itself [-Winfinite-recursion]
+{
+^
+1 warning generated.
+ld: warning: directory not found for option '-Lusr/local/Cellar/boost/1.63.0'
+configure:16464: $? = 0
+configure:16473: result: yes
+configure:16584: g++ -o conftest -std=gnu++0x -Wall -Wno-sign-compare -fPIC   conftest.cpp   -lboost_regex >&5
+ld: warning: directory not found for option '-Lusr/local/Cellar/boost/1.63.0'
+Undefined symbols for architecture x86_64:
+  "boost::basic_regex<int, boost::icu_regex_traits>::do_assign(int const*, int const*, unsigned int)", referenced from:
+      boost::basic_regex<int, boost::icu_regex_traits>::assign(int const*, int const*, unsigned int) in conftest-05d9d8.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+configure:16584: $? = 1
 configure: failed program was:
 | /* confdefs.h */
 | #define PACKAGE_NAME "FreeLing"
@@ -637,11 +642,109 @@ configure: failed program was:
 | #define HAVE_DLFCN_H 1
 | #define LT_OBJDIR ".libs/"
 | #define HAVE_BOOST_REGEX_HPP 1
+| #define HAVE_BOOST_REGEX_ICU_HPP 1
+| #define HAVE_BOOST_PROGRAM_OPTIONS_HPP 1
+| #define HAVE_BOOST_THREAD_HPP 1
+| #define HAVE_BOOST_THREAD_MUTEX_HPP 1
+| #define HAVE_ZLIB_H 1
 | /* end confdefs.h.  */
 | #include <boost/regex/icu.hpp>
-configure:16271: result: no
-configure:16271: checking for boost/regex/icu.hpp
-configure:16271: result: no
+| int
+| main ()
+| {
+| boost::u32regex re=boost::make_u32regex(L"");
+|   ;
+|   return 0;
+| }
+configure:16599: g++ -o conftest -std=gnu++0x -Wall -Wno-sign-compare -fPIC   conftest.cpp   -lboost_regex-mt >&5
+ld: warning: directory not found for option '-Lusr/local/Cellar/boost/1.63.0'
+Undefined symbols for architecture x86_64:
+  "boost::basic_regex<int, boost::icu_regex_traits>::do_assign(int const*, int const*, unsigned int)", referenced from:
+      boost::basic_regex<int, boost::icu_regex_traits>::assign(int const*, int const*, unsigned int) in conftest-5581e8.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+configure:16599: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "FreeLing"
+| #define PACKAGE_TARNAME "freeling"
+| #define PACKAGE_VERSION "4.0"
+| #define PACKAGE_STRING "FreeLing 4.0"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "freeling"
+| #define VERSION "4.0"
+| #define MACOSX 1
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_BOOST_REGEX_HPP 1
+| #define HAVE_BOOST_REGEX_ICU_HPP 1
+| #define HAVE_BOOST_PROGRAM_OPTIONS_HPP 1
+| #define HAVE_BOOST_THREAD_HPP 1
+| #define HAVE_BOOST_THREAD_MUTEX_HPP 1
+| #define HAVE_ZLIB_H 1
+| /* end confdefs.h.  */
+| #include <boost/regex/icu.hpp>
+| int
+| main ()
+| {
+| boost::u32regex re=boost::make_u32regex(L"");
+|   ;
+|   return 0;
+| }
+configure:16614: g++ -o conftest -std=gnu++0x -Wall -Wno-sign-compare -fPIC   conftest.cpp   -lboost_regex-gcc-mt >&5
+ld: warning: directory not found for option '-Lusr/local/Cellar/boost/1.63.0'
+ld: library not found for -lboost_regex-gcc-mt
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+configure:16614: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "FreeLing"
+| #define PACKAGE_TARNAME "freeling"
+| #define PACKAGE_VERSION "4.0"
+| #define PACKAGE_STRING "FreeLing 4.0"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "freeling"
+| #define VERSION "4.0"
+| #define MACOSX 1
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_BOOST_REGEX_HPP 1
+| #define HAVE_BOOST_REGEX_ICU_HPP 1
+| #define HAVE_BOOST_PROGRAM_OPTIONS_HPP 1
+| #define HAVE_BOOST_THREAD_HPP 1
+| #define HAVE_BOOST_THREAD_MUTEX_HPP 1
+| #define HAVE_ZLIB_H 1
+| /* end confdefs.h.  */
+| #include <boost/regex/icu.hpp>
+| int
+| main ()
+| {
+| boost::u32regex re=boost::make_u32regex(L"");
+|   ;
+|   return 0;
+| }
 
 ## ---------------- ##
 ## Cache variables. ##
@@ -678,8 +781,11 @@ ac_cv_env_host_alias_set=
 ac_cv_env_host_alias_value=
 ac_cv_env_target_alias_set=
 ac_cv_env_target_alias_value=
+ac_cv_header_boost_program_options_hpp=yes
 ac_cv_header_boost_regex_hpp=yes
-ac_cv_header_boost_regex_icu_hpp=no
+ac_cv_header_boost_regex_icu_hpp=yes
+ac_cv_header_boost_thread_hpp=yes
+ac_cv_header_boost_thread_mutex_hpp=yes
 ac_cv_header_dlfcn_h=yes
 ac_cv_header_inttypes_h=yes
 ac_cv_header_memory_h=yes
@@ -691,7 +797,10 @@ ac_cv_header_strings_h=yes
 ac_cv_header_sys_stat_h=yes
 ac_cv_header_sys_types_h=yes
 ac_cv_header_unistd_h=yes
+ac_cv_header_zlib_h=yes
 ac_cv_host=x86_64-apple-darwin16.5.0
+ac_cv_lib_boost_regex_main=yes
+ac_cv_lib_icuuc_main=yes
 ac_cv_objext=o
 ac_cv_path_EGREP='/usr/bin/grep -E'
 ac_cv_path_FGREP='/usr/bin/grep -F'
@@ -779,7 +888,7 @@ BOOST_GCC_TRUE='#'
 BOOST_MT_FALSE=''
 BOOST_MT_TRUE='#'
 BOOST_OLD_FALSE=''
-BOOST_OLD_TRUE=''
+BOOST_OLD_TRUE='#'
 BUILD_TESTS_FALSE=''
 BUILD_TESTS_TRUE='#'
 CC='gcc'
@@ -818,7 +927,7 @@ KALDI_TRUE='#'
 LD='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld'
 LDFLAGS=''
 LIBOBJS=''
-LIBS=''
+LIBS='  -lboost_regex-gcc-mt'
 LIBTOOL='$(SHELL) $(top_builddir)/libtool'
 LIPO='lipo'
 LN_S='ln -s'
@@ -933,5 +1042,10 @@ target_alias=''
 #define HAVE_DLFCN_H 1
 #define LT_OBJDIR ".libs/"
 #define HAVE_BOOST_REGEX_HPP 1
+#define HAVE_BOOST_REGEX_ICU_HPP 1
+#define HAVE_BOOST_PROGRAM_OPTIONS_HPP 1
+#define HAVE_BOOST_THREAD_HPP 1
+#define HAVE_BOOST_THREAD_MUTEX_HPP 1
+#define HAVE_ZLIB_H 1
 
 configure: exit 1
